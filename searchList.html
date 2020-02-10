@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<!-- IE 浏览器运行最新的渲染模式-->
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<!-- 启用响应式特性 -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!-- 双核使用webkit内核 -->
+<meta name="renderer" content="webkit">
+<title>商旅系统</title>
+<link href="css/bootstrap.min.css" rel="stylesheet">
+<link href="css/common.css" rel="stylesheet">
+<link href="css/corptravel.css" rel="stylesheet">
+<link href="css/enterprise.css" rel="stylesheet">
+<!--<link href="../../../js/icheck/skins/all.css" rel="stylesheet" type="text/css">-->
+<!-- IconFont图标 -->
+<link href="css/iconfont.css" rel="stylesheet">
+<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
+<script src="js/bootstrap.min.js"></script>
+<!-- 兼容IE8 -->
+<!--[if lte IE 9]>
+<script type="text/javascript" src="../../../js/html5shiv.min.js"></script>
+<script type="text/javascript" src="../../../js/respond.min.js"></script>
+<![endif]-->
+<!-- layer弹框 2.1 -->
+<script type="text/javascript" src="js/layer/layer.js"></script>
+<!-- 日历控件 -->
+<script language="javascript" type="text/javascript" src="js/My97DatePicker/WdatePicker.js"></script>
+</head>
+<body class="bg-body">
+<!-- header -->
+<nav class="navbar navbar-default navbar-fixed-top bg-white" >
+<!-- 小导航 -->
+<nav class="navbar navbar-default" style=" min-height:30px; line-height:30px; margin-bottom:0px; border-radius:0;">
+  <div class="container font12">
+    <!-- Brand and toggle get grouped for better mobile display -->
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+     <!-- <span style=" margin-left:-15px; margin-right:20px;">企业商旅管理</span>-->
+    </div>
+    <ul class="nav navbar-nav nav-top-small" style="margin-left:-15px;" >
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">您好，孙靖 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="系统管理/修改密码.html">修改密码</a></li>
+            <li><a href="#">退出</a></li>
+          </ul>
+        </li>       
+      </ul>
+<ul class="nav navbar-nav navbar-right nav-top-small">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="icon iconfont font14 " style=" vertical-align:middle;"  >&#xe62b;</i> 028-12345678 <span class="caret"></span></a>
+          <ul class="dropdown-menu">
+            <li><a href="#">（或）028-12345678</a></li>
+            <li><a href="#">（或）028-12345678</a></li>
+            <!--<li role="separator" class="divider"></li>-->
+          </ul>
+        </li>
+        
+      </ul>
+    <ul class="nav navbar-nav navbar-right nav-top-small">
+        <li><a href="帮助中心/help.html">帮助中心</a></li>
+        
+      </ul>
+  </div>
+</nav>
+<!-- 小导航结束 -->
+
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class=" " href="差旅报告/汇总.html" ><img src="img/logo.png" width="210" height="70" alt="系统LOGO" class="pull-left mar-right-30" style="margin-left:-15px;" ></a>
+      <!--<h4 class="navbar-brand font24" >成都万里行科技发展有限公司</h4>-->
+    </div>
+    
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+      <ul class="nav navbar-nav navbar-right">
+        <li  class="active"><a href="查询列表.html"><i class="icon iconfont icon-nav-block font24" >&#xe620;</i> 在线预订</a></li>
+         <li ><a href="订单管理/订单列表.html"><i class="icon iconfont icon-nav-block font24" >&#xe61c;</i> 订单管理</a></li>
+        
+      </ul>
+    </div><!-- /.navbar-collapse -->
+    
+  </div>
+</nav>
+<!-- header end -->
+<!-- 搜索 -->
+<div class="index-wall white " style=" ">
+  <div class="container" style=" position:relative;">
+    <form class="form-inline">
+      <div class="form-group">
+        <select name="" class="form-control">
+          <option>单程</option>
+          <option selected>往返</option>
+        </select>
+      </div>
+      <div class="form-group mar-left-10">
+        <label for="">出发城市</label>
+        <input type="text" class="form-control" style="width:85px;" id="" value="成都" placeholder="">
+      </div>
+      <div class="form-group">
+        <label for=""> — <a href="#" class="huan">换</a> —</label>
+      </div>
+       <div class="form-group">
+        <label for="">到达城市</label>
+        <input type="text" class="form-control" style="width:85px;" id="" value="北京" placeholder="">
+      </div>
+      <div class="form-group mar-left-10">
+        <label for="">出发日期</label>
+        <input type="text" class="form-control " style="width:110px;" id="" value="2016-01-13" placeholder="" onClick="WdatePicker()">
+      </div>
+      <div class="form-group mar-left-10">
+        <label for="">返回日期</label>
+        <input type="text" class="form-control " id="" style="width:110px;" onClick="WdatePicker()" value="2016-01-13" placeholder="">
+      </div>
+      <div class="form-group mar-left-10">
+        <select id="dropAirlines"  class="form-control" style=" width:120px;">
+                            <option value="">全部航司</option>
+                                <option value="3U">3U-川航</option>
+                                <option value="8C">8C-东星</option>
+                                <option value="8L">8L-祥鹏</option>
+                                <option value="9C">9C-春秋</option>
+                                <option value="BK">BK-奥凯</option>
+                                <option value="CA">CA-国航</option>
+                                <option value="CN">CN-新华</option>
+                                <option value="CZ">CZ-南航</option>
+                                <option value="DR">DR-瑞丽航空</option>
+                                <option value="DZ">DZ-东海</option>
+                                <option value="EU">EU-成都(鹰联)</option>
+                                <option value="FM">FM-上航</option>
+                                <option value="FU">FU-福州航空</option>
+                                <option value="G5">G5-华夏</option>
+                                <option value="GJ">GJ-长龙航空</option>
+                                <option value="GS">GS-天津</option>
+                                <option value="GX">GX-广西航空</option>
+                                <option value="GY">GY-多彩贵州航空</option>
+                                <option value="HO">HO-吉祥</option>
+                                <option value="HU">HU-海航</option>
+                                <option value="JD">JD-首都(金鹿)</option>
+                                <option value="JR">JR-幸福</option>
+                                <option value="KN">KN-联航</option>
+                                <option value="KY">KY-昆航</option>
+                                <option value="MF">MF-厦航</option>
+                                <option value="MU">MU-东航</option>
+                                <option value="NS">NS-河北</option>
+                                <option value="PN">PN-西部</option>
+                                <option value="QW">QW-青岛</option>
+                                <option value="SC">SC-山东</option>
+                                <option value="TV">TV-西藏</option>
+                                <option value="UQ">UQ-乌鲁木齐航空</option>
+                                <option value="VD">VD-鲲鹏</option>
+                                <option value="Y8">Y8-扬子江快运航空</option>
+                                <option value="YI">YI-英安</option>
+                                <option value="ZH">ZH-深航</option>
+                        </select>
+      </div>
+      
+      <button type="submit" class="btn btn-warning mar-left-10">搜索</button>
+    </form>
+  </div>
+</div>
+<!-- 搜索结束 -->
+
+<!-- 已选择航班及航程 -->
+<div class="container mar-bottom-15 qc3 " style=" display:none;">
+  <div class="hangbanlist">
+  <h4>已选择的航班及舱位信息</h4>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-hover table-striped font12">
+      <tr class="">
+        <th>&nbsp;</th>
+        <th>航线</th>
+        <th>起抵机场</th>
+        <th>起抵时间</th>
+        <th>航班信息</th>
+        <th>机票单价</th>
+        <th>基建燃油费</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <td><span class="label label-primary ">去程</span></td>
+        <td>上海-呼和浩特<br>2016-02-29</td>
+        <td>上海虹桥机场T2<br>白塔机场</td>
+        <td>07:15<br>10:25</td>
+        <td>东方航空 MU5459<br>经济舱</td>
+        <td><strong class="rmb orange-f60 font16">￥1020</strong></td>
+        <td><strong class="rmb ">￥50</strong></td>
+        <td><a href="#">更改</a></td>
+      </tr>
+  </table>
+  </div>
+ 
+</div>
+<div class="container mar-bottom-15 qc4 " style=" display:none;">
+  <div class="hangbanlist">
+  <h4>已选择的航班及舱位信息</h4>
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-hover table-striped font12" style="margin-bottom:0;">
+      <tr class="">
+        <th>&nbsp;</th>
+        <th>航线</th>
+        <th>起抵机场</th>
+        <th>起抵时间</th>
+        <th>航班信息</th>
+        <th>机票单价</th>
+        <th>基建燃油费</th>
+        <th>&nbsp;</th>
+      </tr>
+      <tr>
+        <td><span class="label label-primary ">去程</span></td>
+        <td>上海-呼和浩特<br>2016-02-29</td>
+        <td>上海虹桥机场T2<br>白塔机场</td>
+        <td>07:15<br>10:25</td>
+        <td>东方航空 MU5459<br>经济舱</td>
+        <td><strong class="rmb orange-f60 font16">￥1020</strong></td>
+        <td><strong class="rmb ">￥50</strong></td>
+        <td><a href="#">更改</a></td>
+      </tr>
+      <tr>
+        <td><span class="label label-primary ">返程</span></td>
+        <td>呼和浩特-上海<br>2016-02-29</td>
+        <td>白塔机场<br>上海虹桥机场T2</td>
+        <td>07:15<br>10:25</td>
+        <td>东方航空 MU5460<br>经济舱</td>
+        <td><strong class="rmb orange-f60 font16">￥480</strong></td>
+        <td><strong class="rmb ">￥50</strong></td>
+        <td><a href="#">更改</a></td>
+      </tr>
+  </table>
+    <div class=" pad-15 text-right bor-top-solid-1">费用总计：<strong class="rmb orange-f60 font16">￥480</strong> <button type="submit" class="btn btn-warning mar-left-20" onClick="window.location.href ='在线预订/政策选择.html';">确定预订</button></div>
+  </div>
+ 
+</div>
+<!-- 已选择航班及航程 结束 -->
+
+<div class="qc5">
+  <!-- 日期开始 -->
+  <div class="container mar-bottom-15 ">
+    <div class=" bor-solid-1" style=" background:#EFF2F5;">
+      <div class="arrow-left"><a href="#" style="">&nbsp;</a></div>
+      <div class="arrow-right"><a href="#" style="">&nbsp;</a></div>
+      <ul class="nav nav-tabs nav-justified ">
+        <li role="presentation" class="active"><a href="#">01-11<br>周一</a></li>
+        <li role="presentation"><a href="#">01-12<br>周二</a></li>
+        <li role="presentation"><a href="#">01-13<br>周三</a></li>
+        <li role="presentation"><a href="#">01-14<br>周四</a></li>
+        <li role="presentation"><a href="#">01-15<br>周五</a></li>
+        <li role="presentation"><a href="#">01-16<br>周六</a></li>
+        <li role="presentation"><a href="#">01-17<br>周日</a></li>
+      </ul>
+      
+    </div>
+  </div>
+  <!-- 日期结束 -->
+  
+  <!-- 列表开始 -->
+  <div class="container mar-bottom-30 ">
+    <div class="hangbanlist">
+      <div>
+        <!-- 表头 -->
+        <ul class="list-inline bor-bottom-solid-1  ">
+          <li class="w-percentage-25"><img src="img/air/3U.png" width="24" height="24"> <strong> 川航</strong> 3U8891<span class="gray-999 font12 mar-left-10">机型：空客320（中）</span></li>
+          <li class="text-right w80"> <strong class="time ">16:30</strong></li>
+          <li class=""> —— </li>
+          <li class="w80"> <strong class="time ">23:30</strong></li>
+          <li class="w100 text-right"> 成都双流T2</li>
+          <li class=""> —— </li>
+          <li class=" w100"> 北京首都T1 </li>
+          <li class="w-percentage-20 text-center"> <span class="gray-999 ">机建 + 燃油：</span><span class="gray-999 rmb font12">￥50 + ￥20</span></li>
+        </ul>
+        <!-- 表头结束 -->
+        <!-- 表BODY -->
+        <div class="collapse " id="collapseExample2" style=" display:block;">
+          <div class="hangbanlist-body qc1" style=" background-color:#FEFCFC;">
+            <ul class="list-inline">
+              <li class="w-percentage-20"><strong class="blue-0093dd">特殊舱位(D)</strong></li>
+              <li  class="w-percentage-25">座位数：≥9</li>
+              <li  class="w-percentage-25">票面价：<span class="rmb">￥1070</span></li>
+              
+              
+              <li  class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥1020</strong> <span class="gray font12">1.9折</span></li>
+              <li class="pull-right "><button type="button" class="btn btn-danger btn-sm qucheng" >选定去程</button></li>
+            </ul>
+            <ul class="list-inline">
+              <li class="w-percentage-20">80折(M)</li>
+              <li  class="w-percentage-25">座位数：≥9</li>
+              <li  class="w-percentage-25">票面价：<span class="rmb">￥1070</span></li>
+              
+              
+              
+              <li  class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥998</strong></li>
+              <li class="pull-right qucheng"><button type="button" class="btn btn-danger btn-sm " >选定去程</button></li>
+            </ul>
+            <!-- 更多舱位 -->
+            <div class="panel" style="display:none;  background-color:#FEFCFC;">
+              <ul class="list-inline">
+                <li class="w-percentage-20"><strong class="blue-0093dd">特殊舱位(D)</strong></li>
+                <li  class="w-percentage-25">座位数：≥9</li>
+                <li  class="w-percentage-25">票面价：<span class="rmb">￥1070</span></li>
+                
+                
+                <li  class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥1020</strong> <span class="gray font12">1.9折</span></li>
+                <li class="pull-right qucheng"><button type="button" class="btn btn-danger btn-sm " >选定去程</button></li>
+              </ul>
+              <ul class="list-inline">
+                <li class="w-percentage-20"><strong class=" red">特惠(D)</strong></li>
+                <li  class="w-percentage-25">座位数：≤5</li>
+                <li  class="w-percentage-25">票面价：<span class="rmb">￥2980</span></li>
+                
+                
+                <li  class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥2560</strong></li>
+                <li class="pull-right "><button type="button" class="btn btn-danger btn-sm qucheng" >选定去程</button></li>
+              </ul>
+              <ul class="list-inline">
+                <li class="w-percentage-20"><strong class="red">紧急通道(D)</strong></li>
+                <li  class="w-percentage-25">座位数：=1</li>
+                <li  class="w-percentage-25">票面价：<span class="rmb">￥1070</span></li>
+                
+                
+                <li  class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥1020</strong> <span class="gray font12">1.9折</span></li>
+                <li class="pull-right "><button type="button" class="btn btn-danger btn-sm qucheng" >选定去程</button></li>
+              </ul>
+              <ul class="list-inline">
+                <li class="w-percentage-20">80折(M)</li>
+                <li  class="w-percentage-25">座位数：≥9</li>
+                <li  class="w-percentage-25">票面价：<span class="rmb">￥1070</span></li>
+                
+                
+                <li  class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥998</strong></li>
+                <li class="pull-right "><button type="button" class="btn btn-danger btn-sm qucheng" >选定去程</button></li>
+                
+              </ul> 
+            </div>
+            <!-- 更多舱位 结束 -->
+            <div class=" lh30 text-right"> <a href="#" class="mar-right-20 font12 flip" >更多舱位</a></div>
+          </div>
+          
+          <div class="hangbanlist-body qc2" style="display:none;  background-color:#FEFCFC;">
+            <ul class="list-inline">
+              <li class="w-percentage-20"><strong class="blue-0093dd">特殊舱位(D)</strong></li>
+              <li  class="w-percentage-25">座位数：≥9</li>
+              <li  class="w-percentage-25">票面价：<span class="rmb">￥1070</span></li>
+              
+              
+              <li  class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥1020</strong> <span class="gray font12">1.9折</span></li>
+              <li class="pull-right "><button type="button" class="btn btn-danger btn-sm fancheng" >选定返程</button></li>
+            </ul>
+            <ul class="list-inline">
+              <li class="w-percentage-20">80折(M)</li>
+              <li  class="w-percentage-25">座位数：≥9</li>
+              <li  class="w-percentage-25">票面价：<span class="rmb">￥1070</span></li>
+              
+              
+              
+              <li  class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥998</strong></li>
+              <li class="pull-right "><button type="button" class="btn btn-danger btn-sm fancheng" >选定返程</button></li>
+            </ul>
+            <!-- 更多舱位 -->
+            <div class="panel" style="display:none;  background-color:#FEFCFC;">
+              <ul class="list-inline">
+                <li class="w-percentage-20"><strong class="blue-0093dd">特殊舱位(D)</strong></li>
+                <li  class="w-percentage-25">座位数：≥9</li>
+                <li  class="w-percentage-25">票面价：<span class="rmb">￥1070</span></li>
+                
+                
+                <li  class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥1020</strong> <span class="gray font12">1.9折</span></li>
+                <li class="pull-right "><button type="button" class="btn btn-danger btn-sm fancheng" >选定返程</button></li>
+              </ul>
+              <ul class="list-inline">
+                <li class="w-percentage-20"><strong class=" red">特惠(D)</strong></li>
+                <li  class="w-percentage-25">座位数：≤5</li>
+                <li  class="w-percentage-25">票面价：<span class="rmb">￥2980</span></li>
+                
+                
+                <li  class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥2560</strong></li>
+                <li class="pull-right "><button type="button" class="btn btn-danger btn-sm fancheng" >选定返程</button></li>
+              </ul>
+              <ul class="list-inline">
+                <li class="w-percentage-20"><strong class="red">紧急通道(D)</strong></li>
+                <li  class="w-percentage-25">座位数：=1</li>
+                <li  class="w-percentage-25">票面价：<span class="rmb">￥1070</span></li>
+                
+                
+                <li  class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥1020</strong> <span class="gray font12">1.9折</span></li>
+                <li class="pull-right "><button type="button" class="btn btn-danger btn-sm fancheng" >选定返程</button></li>
+              </ul>
+              <ul class="list-inline">
+                <li class="w-percentage-20">80折(M)</li>
+                <li  class="w-percentage-25">座位数：≥9</li>
+                <li  class="w-percentage-25">票面价：<span class="rmb">￥1070</span></li>
+                
+                
+                <li  class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥998</strong></li>
+                <li class="pull-right "><button type="button" class="btn btn-danger btn-sm fancheng" >选定返程</button></li>
+                
+              </ul> 
+            </div>
+            <!-- 更多舱位 结束 -->
+            <div class=" lh30 text-right"> <a href="#" class="mar-right-20 font12 flip" >更多舱位</a></div>
+          </div>
+        </div> 
+        <!-- 表BODY 结束 --> 
+      </div>
+      <!-- 分页 -->
+      <nav class=" pull-right ">
+        <ul class="pagination">
+          <li>
+            <a href="#" aria-label="Previous">
+            <span aria-hidden="true">&laquo;</span>
+            </a>
+          </li>
+          <li><a href="#">1</a></li>
+          <li><a href="#">2</a></li>
+          <li><a href="#">3</a></li>
+          <li><a href="#">4</a></li>
+          <li><a href="#">5</a></li>
+          <li>
+            <a href="#" aria-label="Next">
+            <span aria-hidden="true">&raquo;</span>
+            </a>
+          </li>
+          
+        </ul>
+  </nav>
+      <!-- 分页结束 -->
+      <div class="clearfix"></div>
+    </div>
+    
+    
+    
+    
+  </div>
+  <!-- 列表结束 -->
+</div>
+<script type="text/javascript"> 
+$(document).ready(function(){
+						   
+   $(".flip").click(function(){  //更多舱位
+    $(".panel").slideToggle("");
+   });
+   
+   $(".qucheng").click(function(){
+   $(".qc1").hide();
+   $(".qc2").show();
+   $(".qc3").show();
+   });
+   
+   $(".fancheng").click(function(){
+   $(".qc2").hide();
+   $(".qc3").hide();
+   $(".qc4").show();
+   $(".qc5").hide();
+   });
+
+  
+   
+   
+});
+</script>
+</body>
+</html>

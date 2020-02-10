@@ -1,0 +1,145 @@
+@charset "utf-8";
+/* CSS Document */
+
+/*html, body { height: 100%; overflow-x: hidden; overflow-y: auto; }
+body, div { margin: 0; padding: 0; }
+a { text-decoration: none; }
+a:hover { text-decoration: none; }
+a:active { text-decoration: none; }*/
+.avatar { position: relative; display: inline-block; zoom: 1; padding-bottom: 10px !important; padding-top: 10px !important; }
+.avatar .avatar-face { display: inline-block; position: relative; zoom: 1; }
+.avatar .avatar-face .avatar-text { text-align: center; overflow: hidden; display: inline-block; zoom: 1; vertical-align: middle; background: #e7e7df; font-size: 16px; height: 40px; line-height: 40px; width: 40px; border-radius: 50%; color: #d84c31; text-shadow: transparent 0 0 0; }
+.avatar .avatar-face img { border-radius: 50%; width: 40px; height: 40px; background: #f7f7f7; -webkit-box-shadow: 0 0 1px #ddd; box-shadow: 0 0 1px #ddd; }
+.avatar.avatar-30 .avatar-text { width: 30px; height: 30px; line-height: 30px; }
+.avatar.avatar-30 img { width: 30px; height: 30px; }
+.avatar.avatar-30 i.status-point { right: 0; }
+.avatar.avatar-50 .avatar-text { width: 50px; height: 50px; line-height: 50px; }
+.avatar.avatar-50 img { width: 50px; height: 50px; }
+.avatar.avatar-50 i.status-point { right: 6px; }
+.menu-group-item.active > .badge, .nav-pills > .active > a > .badge { color: #337ab7; background-color: #fff; }
+.menu-group-item > .badge { float: right; }
+.menu-group-item > .badge + .badge { margin-right: 5px; }
+.menu-group { padding-left: 0; white-space: nowrap; }
+.menu-group-item { position: relative; display: block; padding: 10px 15px; background-color: rgba(255, 255, 255, 0.05); line-height: 30px; }
+.menu-group-item:last-child { margin-bottom: 1px; }
+.menu-group-item:first-child { margin-top: 1px; color: #AEB2B7; text-decoration: none; background-color: #222; border-top: solid 1px #111415; border-bottom: solid 1px #646668; }
+.menu-group-item:first-child:hover { margin-top: 1px; color: #AEB2B7; text-decoration: none; background-color: #222; }
+a.menu-group-item { color: #AEB2B7; }
+a.menu-group-item .menu-group-item-heading { color: #333; }
+a.menu-group-item:hover,  a.menu-group-item:focus { color: #D84C31; text-decoration: none; background-color: #3d3535; }
+.contentbar { position: absolute; top: 0px; left: 0px; padding-left: 20px; z-index: 1000; min-width: 500px; }
+.contentbar .title { color: #333; }
+.contentbar .title h3 { display: inline; min-width: 100px; margin: 0; line-height: 59px; font-size: 20px; color: #5c6371; }
+ul.tabs { margin: 0; list-style: none; }
+ul.tabs:before, .mod_navbar .main ul.tabs:after { content: " "; display: table; }
+ul.tabs:after { clear: both; }
+ul.tabs li { float: left; }
+ul.tabs li a { display: block; height: 50px; margin: 5px 15px 0 15px; padding: 12px 15px 0px 15px; color: #323a45; font-size: 16px; text-decoration: none; }
+ul.tabs li a:hover { border-bottom: solid 3px rgba(216, 76, 49, 0.4); color: #333; text-decoration: none; cursor: pointer; }
+ul.tabs li a.active { border-bottom: solid 3px #d84c31 !important; color: #333; cursor: default; text-decoration: none; }
+.leftpanel { min-width: 220px; max-width: 220px; height: 100%; position: absolute; margin-top: -1px; background: #393939; top: 0px; left: 0px; }
+.centerpanel { position: absolute; height: 100%; left: 220px; right: 0px; background-color: #F9F9F7; }
+.main { width: 100%; height: 100%; position: relative; }
+.contentbar { border-bottom: 1px solid #e1e1e1; -webkit-box-shadow: 1px 0 3px #eee, inset 0 0 3px #fff; box-shadow: 1px 0 3px #eee, inset 0 0 3px #fff; position: absolute; background-color: #f9f9f7; height: 50px; width: 100%; top: 0px; left: 0px; }
+.contentpanel { overflow: auto; max-height: 100%; height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; padding-top: 60px; padding-left: 10px; min-width: 700px; max-width: 100%; }
+.leftcontent { position: absolute; height: 100%; left: 0px; right: 310px; max-height: 100%; overflow: auto; white-space: nowrap; }
+.rightcontent { min-width: 300px; max-width: 300px; height: 100%; position: absolute; right: 0px; top: 0px; margin-left: 10px; }
+.usercontent { position: absolute; height: 160px; top: 0px; left: 0px; right: 10px; background-color: #F9F9F7; }
+.usercontent .face { position: absolute; left: 10px; height: 65px; width: 60px; top: 0px; }
+.usercontent .hello { position: absolute; left: 70px; height: 70px; right: 10px; top: 0px; }
+.usercontent .task { position: absolute; top: 70px; left: 5px; bottom: 0px; right: 5px; border-top: solid 1px #ddd; padding-top: 10px; padding-bottom: 10px; }
+.usercontent .task ul { list-style: none; margin: 0px; padding-left: 5px; padding-right: 5px; text-align: center; }
+.usercontent .task ul li { float: left; height: 70px; margin: 0px; width: 88px; border-left: solid 1px #ddd; }
+.usercontent .task ul li:first-child { float: left; height: 70px; margin: 0px; width: 88px; border: none 0px; }
+.tasklistcontent { position: absolute; top: 0px; left: 10px; right: 15px; bottom: 15px; max-height: 100%; overflow: auto; white-space: nowrap; border: solid 1px #e1e1e1; padding: 15px 15px 15px 15px; }
+/*.tasklistcontent div:first-child
+	{
+		position: relative;
+		width: 100%;
+		height: 100%;
+		top: 0px;
+		right: 0px;
+		left: 0px;
+		bottom: 0px;
+		padding: 10px 10px 10px 10px;
+	}*/
+
+	.tasklistcontent .heading { width: 100%; height: 50px; display: block; max-height: 50px; border-bottom: solid 1px #e1e1e1; margin-bottom: 10px; }
+.tasklistcontent .heading .title { float: left; font-size: 18px; color: #646B75; }
+.tasklistcontent .task-item { display: block; width: 100% !important; height: 80px !important; max-height: 80px !important; border-bottom: solid 1px #e1e1e1; padding-left: 30px; padding-top: 10px; padding-bottom: 10px; }
+.tasklistcontent .task-item .task-title { word-wrap: break-word; white-space: normal; line-height: 22px; color: #333; margin-left: 5px; }
+.tasklistcontent .task-item .task-check { color: #999; font-size: 18px; line-height: 22px; }
+.subjectcontent { position: absolute; height: 100%; top: 0px; left: 0px; right: 0px; max-height: 100%; overflow: auto; white-space: nowrap; }
+.subjectcontent .heading { color: #8A959E; position: absolute; top: 5px; left: 5px; right: 5px; height: 40px; max-height: 200px; min-height: 100px; }
+.subjectcontent .subjectlist { color: #8A959E; position: absolute; top: 45px; left: 5px; right: 5px; bottom: 0px; }
+.subjectcontent .subjectitem { position: relative; margin-top: 10px; margin-left: 10px; border: solid 1px #e1e1e1; float: left; width: 190px; max-width: 190px; min-width: 190px; height: 200px; max-height: 200px; min-height: 200px; }
+.subjectcontent .subjectitem .heading { position: absolute; top: 5px; left: 5px; right: 5px; width: 100%; max-width: 180px; height: 40px; }
+.subjectcontent .subjectitem .heading .icon { float: left; width: 40px; }
+.subjectcontent .subjectitem .heading .text { width: 130px; float: right; word-wrap: break-word; word-break: break-all; white-space: normal; }
+.subjectcontent .subjectitem .content { position: absolute; top: 45px; bottom: 5px; left: 5px; width: 100%; }
+.subjectcontent .subjectitem .content span { display: block; }
+/*.subjectcontent .subjectitem .content span a:after
+			{
+				content:"\20\20\20\20\20\20";
+			}*/
+
+.contentpanel .subjectdetail { position: absolute; width: 300px; height: 400px; right: 20px; z-index: 1000; top: 50px; max-height: 300px; min-height: 300px; max-width: 300px; min-width: 300px; }
+.contentpanel .subjectstatemodify { position: absolute; width: 300px; height: 140px; right: 20px; z-index: 1000; top: 50px; max-height: 140px; min-height: 140px; max-width: 300px; min-width: 300px; }
+/*.teamchoice
+{
+	position: absolute;
+	width: 300px;
+	z-index: 1001;
+	top: 50px;
+	right: 20px;
+	bottom: 50px;
+	max-width: 300px;
+	min-width: 300px;
+	overflow: auto;
+	border: solid 1px #e1e1e1;
+}*/
+
+.team-item { margin-top: 5px; display: block; padding: 5px 5px 5px 5px; margin-left: 10px; }
+.team-user { margin-top: 5px; display: block; padding: 5px 5px 5px 5px; margin-left: 10px; cursor: pointer; }
+.teampanel { position: absolute; top: 0px; left: 0px; right: 0px; max-width: 100%; max-height: 100%; overflow: auto; }
+.teampanel .teamone { width: 100%; display: block; padding: 20px 20px 20px 20px; }
+.teampanel .teamone .team-item { margin-top: 5px; display: block; padding: 5px 5px 5px 5px; margin-left: 30px; }
+.teampanel .team-user { margin-top: 5px; display: block; padding: 5px 5px 5px 5px; margin-left: 30px; cursor: pointer; }
+.teampanel .team-user:hover { margin-top: 5px; display: block; padding: 5px 5px 5px 5px; margin-left: 30px; background-color: #e7e7df; }
+.teampanel .teamone .team-item .team-item-heading { padding: 5px 5px 5px 5px; display: block; cursor: pointer; height: 30px; }
+.teampanel .teamone .team-item .team-item-heading .show { display: block; }
+.teampanel .teamone .team-item .team-item-heading .hidden { display: none; }
+.teampanel .teamone .team-item .team-item-heading:hover { display: block; background-color: #e7e7df; }
+.teampanel .teamone a { color: #333; }
+.teampanel .titanuser { position: relative; width: 300px; height: 350px; margin-top: 50px; margin-left: 50px; max-height: 350px; min-height: 350px; max-width: 300px; min-width: 300px; }
+.contentpanel .teamdetail { position: absolute; width: 300px; height: 300px; right: 20px; z-index: 1000; top: 0px; max-height: 300px; min-height: 300px; max-width: 300px; min-width: 300px; }
+.contentpanel .teamopdiv { position: absolute; width: 200px; height: 100px; right: 20px; z-index: 1000; top: 0px; max-height: 100px; min-height: 100px; max-width: 200px; min-width: 200px; }
+.contentpanel .myselfinfo { color: #5C6371 !important; position: absolute; top: 20px; left: 20px; right: 20px; bottom: 20px; }
+.contentpanel .myselfinfo div { display: block; height: 30px; padding: 5px 5px 5px 5px; }
+.contentpanel .myselfinfo .title { font-weight: bold; }
+.contentpanel .myselfinfo .text { font-weight: bold; color: #D84C31; }
+.contentpanel .updatepassword { color: #5C6371 !important; position: absolute; top: 20px; left: 20px; width: 400px; height: 400px; }
+.contentpanel .updatepassword div:first-child { height: 34px; }
+.contentpanel .ganttselectbar { position: absolute; top: 0px; left: 10px; right: 15px; max-height: 50px; min-height: 50px; height: 50px; overflow: auto; white-space: nowrap; border: solid 1px #e1e1e1; }
+.contentpanel .ganttselectbar .teamselectbar { width: 40%; max-width: 40%; min-width: 40%; height: 100%; float: left; margin-left: 0px; padding-left: 20px; padding-top: 8px; }
+.contentpanel .ganttselectbar .teamselectbutton { width: 20%; max-width: 20%; min-width: 20%; height: 100%; float: left; margin-left: 0px; padding-left: 20px; padding-top: 8px; }
+.contentpanel .ganttchart { position: absolute; top: 60px; left: 10px; right: 15px; bottom: 15px; max-height: 100%; overflow: auto; white-space: nowrap; border: solid 1px #e1e1e1; }
+.contentpanel .ganttchart table tr td { width: 50px; max-width: 50px; min-width: 50px; height: 50px; max-height: 50px; min-width: 50px; padding: 2px; border: solid 1px #e1e1e1; border-top: none 0px; text-align: center; }
+.contentpanel .ganttchart table tr td:first-child { width: 80px; max-width: 80px; min-width: 80px; height: 50px; max-height: 50px; min-width: 50px; padding: 2px; border: solid 1px #e1e1e1; border-top: none 0px; border-left: none 0px; }
+.contentpanel .ganttchart table tbody tr:hover { background: #fff; }
+.contentpanel .ganttchart table tbody div { display: block; width: 100%; height: 20px; margin-bottom: 5px; }
+.contentpanel .ganttchart table tbody div.full { cursor: pointer; background-color: #337AB7; }
+.contentpanel .ganttchart table tbody div.notfull { cursor: pointer; background-color: #F2DEDE; }
+.contentpanel .ganttchart table tbody div.free { cursor: pointer; }
+.contentpanel .ganttchart table tr td.weekend { background-color: #fff; }
+.inlinetext { height: 30px; line-height: 30px; padding: 5px; display: block; word-wrap: break-word; white-space: normal; }
+.contentpanel .solution-heading { position: absolute; top: 0px; left: 10px; right: 15px; max-height: 50px; min-height: 50px; height: 50px; overflow: hidden; white-space: nowrap; border: solid 1px #e1e1e1; }
+.contentpanel .solution-heading .bar { width: 40%; max-width: 40%; min-width: 40%; height: 100%; float: left; margin-left: 0px; padding-left: 20px; padding-top: 8px; }
+.contentpanel .solution-heading .buttonbar { width: 20%; max-width: 20%; min-width: 20%; height: 100%; float: left; margin-left: 0px; padding-left: 20px; padding-top: 8px; }
+.contentpanel .listcontent { position: absolute; top: 60px; left: 10px; right: 15px; bottom: 15px; max-height: 100%; overflow: auto; white-space: nowrap; }
+.contentpanel .deviceselectbar { position: absolute; top: 0px; left: 10px; right: 15px; max-height: 50px; min-height: 50px; height: 50px; overflow: auto; white-space: nowrap; border: solid 1px #e1e1e1; }
+.contentpanel .deviceselectbar .inputbar div { margin-bottom: 0px; }
+.contentpanel .deviceselectbar .inputbar { width: 18%; max-width: 18%; min-width: 18%; padding-right: 10px; padding-top: 3px; }
+.contentpanel .versionselectbar { position: absolute; top: 0px; left: 10px; right: 15px; max-height: 50px; min-height: 50px; height: 50px; overflow: auto; white-space: nowrap; border: solid 1px #e1e1e1; }
+.contentpanel .versionselectbar .inputbar div { margin-bottom: 0px; }
+.contentpanel .versionselectbar .inputbar { width: 28%; max-width: 28%; min-width: 28%; padding-right: 10px; padding-top: 3px; }
