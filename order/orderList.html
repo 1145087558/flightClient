@@ -30,8 +30,8 @@
 .startbox { overflow:hidden; margin-bottom:5px; }
 .start { float:left; background-color:#f9a60a; padding:2px; color:#fff; border-radius:2px; margin-right:5px; }
 .destination { float:left; background-color:#0096de; padding:2px; color:#fff; border-radius:2px; margin-right:5px; }
-.startcity { float:left; font-size:12px; color:#666; }
-.startcity span { font-size:14px; color:#000; font-weight:bold; }
+.startcity,.endcity { float:left; font-size:12px; color:#666; }
+.startcity span ,.endcity span{ font-size:14px; color:#000; font-weight:bold; }
 .destination1 {float:left; background-color:#0096de; padding:2px; color:#fff; border-radius:2px; margin-right:5px; }
 .destination2 {float:left; background-color:#0096de; padding:2px; color:#fff; border-radius:2px; margin-right:5px; }
 </style>
@@ -205,7 +205,7 @@
 				</div>
 				<table id="ticketinfo" border="0" cellspacing="0" cellpadding="0" class="table table-hover table-striped font12 table-bordered v-align-top">
 					<tr>
-						<th>创建时间</th>
+						<th>订单号</th>
 						<th>乘机人</th>
 						<th>航班号</th>
 						<th>舱位</th>
@@ -294,6 +294,8 @@
 							<label for="inputEmail3" class="col-sm-3 control-label">退票原因</label>
 							<div class="col-sm-6">
 								<input type="text" class="form-control" id="inputEmail3" placeholder="请输入退票理由">
+								<input type="hidden" name="orderNumber">
+								<input type="hidden" name="price">
 							</div>
 						</div>
 					</form>
@@ -301,7 +303,7 @@
 				</div>
 			</div>
 			<div class="modal-footer mar-top-5">
-				<button type="button" class="btn btn-primary" onClick="layer.closeAll()">申请退票</button>
+				<button type="button" class="btn btn-primary" onClick="refundTicket()">申请退票</button>
 				</a>
 				<button type="button" class="btn btn-default" onClick="layer.closeAll()">关闭</button>
 			</div>
@@ -413,14 +415,15 @@
 				});
 
 				$("#ticketinfo").on("click", ".tuipiao", function() {
-					var obj=$(this).parent().parent();
+					var obj = $(this).parent().parent();
 					$("#rev #revFlight td").eq(1).text(obj.children("td").eq(2).text());
 					$("#rev #revFlight td").eq(2).text(obj.find(".startcity p").text());
 					$("#rev #revFlight td").eq(3).text(obj.find(".endcity p").text());
-					$("#rev #revFlight td").eq(4).text(obj.find(".startcity span").text()+" - "
-					+obj.find(".endcity span").text());
-					
-					
+					$("#rev #revFlight td").eq(4).text(obj.find(".startcity span").text() + " - " +
+						obj.find(".endcity span").text());
+					$("#rev .form-horizontal input[name='orderNumber']").val(obj.find("td:first-child span").text());
+					$("#rev .form-horizontal input[name='price']").val(obj.children("td").eq(6).text());
+
 					layer.open({
 						type: 1,
 						title: '申请退票',
@@ -476,7 +479,8 @@
 					success: function(data) {
 						$.each(data.flightInfo, function(i, e) {
 							var html = "";
-							html += '<tr><td>' + dateFormat("YYYY-mm-dd HH:MM:SS", e.orderTime) + '</td><td>';
+							html += '<tr><td><span style="font-weight:bold;font-size:15px;">' + e.orderNumber + '</span><br>' +
+								dateFormat("YYYY-mm-dd HH:MM:SS", e.orderTime) + '</td><td>';
 							$.each(e.flightPeoples, function(j, f) {
 								html += '<p>' + f.realName + '</p>';
 							});
@@ -488,12 +492,12 @@
 								dateFormat("YYYY-mm-dd HH:MM:SS", e.endTime) + '</p></div></div></td><td>' + e.price + '</td><td>' + e.orderStatus +
 								'</td>';
 							if (e.orderStatus == "未支付") {
-								html += '<td><a href="#" class="quxiao" name="'+e.id+'">【取消订单】</a><br>' +
+								html += '<td><a href="#" class="quxiao" name="' + e.id + '">【取消订单】</a><br>' +
 									'<a href="javascript:;" onclick="pay(' + e.id + ',this)" >【立即支付】</a></td></tr>'
 							} else if (e.orderStatus == "已支付") {
 								html += '<td><a href="orderdetails.html">【查看详情】</a><br>' +
-									'<a href="#" class="qiye09" name="'+e.id+'">【申请改签】</a><br>'+
-									'<a href="#" class="tuipiao" name="'+e.id+'">【申请退票】</a></td></tr>';
+									'<a href="#" class="qiye09" name="' + e.id + '">【申请改签】</a><br>' +
+									'<a href="#" class="tuipiao" name="' + e.id + '">【申请退票】</a></td></tr>';
 							} else {
 								html += '<td><a href="orderdetails.html">【查看详情】</a></td></tr>';
 							}
@@ -520,7 +524,6 @@
 						html += data;
 						html += "</body></html>";
 						document.write(html);
-						searchTicketStatus(ticketId, obj); //异步判断订单状态
 					},
 					error: function(data) {
 						if (data.status == 403)
@@ -529,37 +532,45 @@
 				});
 			}
 
-			function searchTicketStatus(ticketId, obj) {
-				var flage = 0;
+			function refundTicket() {
+				var orderNumber = $("#rev .form-horizontal input[name='orderNumber']").val();
+				var price = $("#rev .form-horizontal input[name='price']").val();
+
 				$.ajax({
-					type: "get",
-					dataType: "text",
-					url: "../../api/searchTicketStatus.action/" + ticketId,
+					url: "../../api/alipayRefundRequest.action/out_trade_no/" + orderNumber + "/refund_amount/" + price,
+					type: "put",
 					data: {},
 					success: function(data) {
-						if (data == "已支付") {
-							$(obj).parent().html('<a href="orderdetails.html">【查看详情】</a><br>' +
-								'<a href="#" class="qiye09" name="'+ticketId+'">【申请改签】</a>');
-							$(obj).parent().prev().html("已支付");
-
-							flage = 1;
+						if (data == "退款成功") {
+							$("#ticketinfo tbody tr").each(function(i, e) {
+								if ($(e).find("td:first-child span").text() == orderNumber) {
+									$(e).children("td").eq(7).text("已退款");
+									$(e).find("td:last-child").html('<a href="orderdetails.html">【查看详情】</a>')
+								}
+							});
+							setTimeout(function() {
+								layer.msg('退票成功', {
+									icon: 1
+								});
+							}, 100);
+						} else {
+							setTimeout(function() {
+								layer.msg('退票失败', {
+									icon: 1
+								});
+							}, 100);
 						}
 					},
 					error: function(error) {
 						console.log(error);
+						setTimeout(function() {
+							layer.msg('退票失败', {
+								icon: 1
+							});
+						}, 100);
 					}
 				});
-
-				if (flage == 0) {
-					setTimeout(searchTicketStatus(ticketId, obj), 1000);
-				} else {
-					return;
-				}
-
-			}
-			
-			function refundTicket(){
-				
+				layer.closeAll();
 			}
 		</script>
 

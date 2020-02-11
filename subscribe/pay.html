@@ -441,7 +441,7 @@
 
 			$(function() {
 				$.ajax({
-					url: "../../api/searchOrder.action/" + 4,
+					url: "../../api/searchOrder.action/" + getQueryVariable("orderId"),
 					type: "get",
 					dataType: "json",
 					data: {},
@@ -486,14 +486,13 @@
 				$.ajax({
 					type: "get",
 					dataType: "text",
-					url: "../../api/zifubaoPay.action/" + 8,
+					url: "../../api/zifubaoPay.action/" + getQueryVariable("orderId"),
 					data: {},
 					success: function(data) {
 						html = "<html><head></heda><body>";
 						html += data;
 						html += "</body></html>";
 						document.write(html);
-						setInterval("searchTicketStatus()","1000");
 					},
 					error: function(data) {
 						if (data.status == 403)
@@ -502,7 +501,7 @@
 				});
 			}
 
-			function searchTicketStatus() {
+			/* function searchTicketStatus() {
 				$.ajax({
 					type: "get",
 					dataType: "text",
@@ -517,7 +516,7 @@
 						console.log(error);
 					}
 				});
-			}
+			} */
 		</script>
 	</body>
 </html>
