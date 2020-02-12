@@ -53,14 +53,9 @@
 						</button>
 						<!-- <span style=" margin-left:-15px; margin-right:20px;">企业商旅管理</span>-->
 					</div>
-					<ul class="nav navbar-nav nav-top-small" style="margin-left:-15px;">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">您好，孙靖
-								<span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="../系统管理/修改密码.html">修改密码</a></li>
-								<li><a href="#">退出</a></li>
-							</ul>
+					<ul class="nav navbar-nav nav-top-small userinfo" style="margin-left:-15px;">
+						<li class="dropdown"><a href="../user/login.html" class="dropdown-toggle">
+								请登录</a>
 						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right nav-top-small">
@@ -100,8 +95,9 @@
 				<!-- Collect the nav links, forms, and other content for toggling -->
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav navbar-right">
-						<li><a href="../查询列表.html"><i class="icon iconfont icon-nav-block font24">&#xe620;</i> 在线预订</a></li>
-						<li class="active"><a href="../订单管理/订单列表.html"><i class="icon iconfont icon-nav-block font24">&#xe61c;</i> 订单管理</a></li>
+						<li><a href="../index.html"><i class="icon iconfont icon-nav-block font24">&#xe620;</i> 在线预订</a></li>
+						<li class="active"><a href="../order/orderList.html"><i class="icon iconfont icon-nav-block font24">&#xe61c;</i>
+								订单管理</a></li>
 
 					</ul>
 				</div><!-- /.navbar-collapse -->
@@ -495,11 +491,11 @@
 								html += '<td><a href="#" class="quxiao" name="' + e.id + '">【取消订单】</a><br>' +
 									'<a href="javascript:;" onclick="pay(' + e.id + ',this)" >【立即支付】</a></td></tr>'
 							} else if (e.orderStatus == "已支付") {
-								html += '<td><a href="orderdetails.html">【查看详情】</a><br>' +
+								html += '<td><a href="orderdetails.html?ticketId=' + e.id + '">【查看详情】</a><br>' +
 									'<a href="#" class="qiye09" name="' + e.id + '">【申请改签】</a><br>' +
 									'<a href="#" class="tuipiao" name="' + e.id + '">【申请退票】</a></td></tr>';
 							} else {
-								html += '<td><a href="orderdetails.html">【查看详情】</a></td></tr>';
+								html += '<td><a href="orderdetails.html?ticketId=' + e.id + '">【查看详情】</a></td></tr>';
 							}
 							$("#ticketinfo tbody").append(html);
 						});
@@ -507,6 +503,9 @@
 					},
 					error: function(error) {
 						console.log(error);
+						if (error.status == 403) {
+							window.location.href = "../user/login.html";
+						}
 					},
 				});
 			});
@@ -545,7 +544,8 @@
 							$("#ticketinfo tbody tr").each(function(i, e) {
 								if ($(e).find("td:first-child span").text() == orderNumber) {
 									$(e).children("td").eq(7).text("已退款");
-									$(e).find("td:last-child").html('<a href="orderdetails.html">【查看详情】</a>')
+									var id = $(e).find("td:last-child a").eq(2).attr("name");
+									$(e).find("td:last-child").html('<a href="orderdetails.html?ticketId=' + id + '">【查看详情】</a>')
 								}
 							});
 							setTimeout(function() {
@@ -571,6 +571,37 @@
 					}
 				});
 				layer.closeAll();
+			}
+
+      /* 用户退出 */
+      function logout(){
+      	$.ajax({
+      		url: "../../api/logout.action",
+      		type: "get",
+      		data: {},
+      		success: function(data) {
+      			window.location.href="../index.html";
+      		}
+      	});
+      }
+			
+			/* 用户信息 */
+			var strcookie = document.cookie; //获取cookie字符串
+			var arrcookie = strcookie.split("; "); //分割
+			// 遍历匹配
+			for (var i = 0; i < arrcookie.length; i++) {
+				var arr = arrcookie[i].split("=");
+				if (arr[0] == "user") {
+					$(".userinfo").html("");
+					$(".userinfo").append(
+						'<li class="dropdown"><a href="javascript:;" class="dropdown-toggle"' +
+						'data-toggle="dropdown" role="button" aria-haspopup="true" ' +
+						'aria-expanded="false">您好，' + arr[1] + '<span class="caret"></span></a>' +
+						'<ul class="dropdown-menu">' +
+						'<li><a href="系统管理/修改密码.html">修改密码</a></li>\n' +
+						'<li><a href="javascript:;" onclick="logout()">退出</a></li>' +
+						'</ul></li>');
+				}
 			}
 		</script>
 

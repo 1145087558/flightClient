@@ -1,188 +1,197 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<!-- IE 浏览器运行最新的渲染模式-->
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<!-- 启用响应式特性 -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- 双核使用webkit内核 -->
-<meta name="renderer" content="webkit">
-<title>订单列表</title>
-<link href="../../../css/bootstrap.min.css" rel="stylesheet">
-<link href="../../../css/common.css" rel="stylesheet">
-<link href="../../../css/corptravel.css" rel="stylesheet">
-<link href="../../../css/enterprise.css" rel="stylesheet">
-<!-- IconFont图标 -->
-<link href="../../../css/iconfont.css" rel="stylesheet">
-<script type="text/javascript" src="../../../js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="../../../js/bootstrap.min.js"></script>
-<!-- 兼容IE8 -->
-<!--[if lte IE 9]>
+	<head>
+		<meta charset="utf-8">
+		<!-- IE 浏览器运行最新的渲染模式-->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- 启用响应式特性 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 双核使用webkit内核 -->
+		<meta name="renderer" content="webkit">
+		<title>订单列表</title>
+		<link href="../../../css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../../css/common.css" rel="stylesheet">
+		<link href="../../../css/corptravel.css" rel="stylesheet">
+		<link href="../../../css/enterprise.css" rel="stylesheet">
+		<!-- IconFont图标 -->
+		<link href="../../../css/iconfont.css" rel="stylesheet">
+		<script type="text/javascript" src="../../../js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="../../../js/bootstrap.min.js"></script>
+		<!-- 兼容IE8 -->
+		<!--[if lte IE 9]>
 <script type="text/javascript" src="../../js/html5shiv.min.js"></script>
 <script type="text/javascript" src="../../js/respond.min.js"></script>
 <![endif]-->
-<!-- layer弹框 2.1 -->
-<script type="text/javascript" src="../../../js/layer/layer.js"></script>
+		<!-- layer弹框 2.1 -->
+		<script type="text/javascript" src="../../../js/layer/layer.js"></script>
 
-<style>
-.tabs { width:35px; padding:3px; ; background-color:#db514f; color:#fff; text-align:center; margin-top:2px; margin-bottom:2px; border-radius:3px; }
+		<style>
+			.tabs { width:35px; padding:3px; ; background-color:#db514f; color:#fff; text-align:center; margin-top:2px; margin-bottom:2px; border-radius:3px; }
 .startbox { overflow:hidden; margin-bottom:5px; }
 .start { float:left; background-color:#f9a60a; padding:2px; color:#fff; border-radius:2px; margin-right:5px; }
 .destination { float:left; background-color:#0096de; padding:2px; color:#fff; border-radius:2px; margin-right:5px; }
 .startcity { float:left; font-size:12px; color:#666; }
 .startcity span { font-size:14px; color:#000; font-weight:bold; }
 </style>
-</head>
-<body class="bg-body">
-<!-- header -->
-<nav class="navbar navbar-default navbar-fixed-top bg-white" >
-  <!-- 小导航 -->
-  <nav class="navbar navbar-default" style=" min-height:30px; line-height:30px; margin-bottom:0px; border-radius:0;">
-    <div class="container font12">
-      <!-- Brand and toggle get grouped for better mobile display -->
-      <div class="navbar-header">
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-        <!-- <span style=" margin-left:-15px; margin-right:20px;">企业商旅管理</span>-->
-      </div>
-      <ul class="nav navbar-nav nav-top-small" style="margin-left:-15px;" >
-        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">您好，孙靖 <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../系统管理/修改密码.html">修改密码</a></li>
-            <li><a href="#">退出</a></li>
-          </ul>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right nav-top-small">
-        <li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="icon iconfont font14 " style=" vertical-align:middle;"  >&#xe62b;</i> 028-12345678 <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">（或）028-12345678</a></li>
-            <li><a href="#">（或）028-12345678</a></li>
-            <!--<li role="separator" class="divider"></li>-->
-          </ul>
-        </li>
-      </ul>
-      <ul class="nav navbar-nav navbar-right nav-top-small">
-        <li><a href="../帮助中心/help.html">帮助中心</a></li>
-      </ul>
-    </div>
-  </nav>
-  <!-- 小导航结束 -->
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span> <span class="icon-bar"></span> </button>
-      <a class=" " href="../差旅报告/汇总.html" ><img src="../../../img/logo.png" width="210" height="70" alt="系统LOGO" class="pull-left mar-right-30" style="margin-left:-15px;" ></a>
-      <h4 class="navbar-brand" >成都万里行科技发展有限公司</h4>
-    </div>
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="../在线预订/index.html"><i class="icon iconfont icon-nav-block font24" >&#xe620;</i> 在线预订</a></li>
-        <li class="active"><a href="../订单管理/订单列表.html"><i class="icon iconfont icon-nav-block font24" >&#xe61c;</i> 订单管理</a></li>
-        <li ><a href="../账务中心/总概.html"><span class="glyphicon glyphicon-yen font24 icon-nav-block" aria-hidden="true" style="margin-top:-2px;  margin-bottom:2px;"></span>账务中心</a></li>
-        <!--<li  ><a href="../差旅报告/汇总.html"><i class="icon iconfont icon-nav-block font24"  >&#xe626;</i>报告中心</a></li>-->
-        <li><a href="../数据中心/交易明细.html"><i class="icon iconfont icon-nav-block font24"  >&#xe623;</i>数据中心</a></li>
-        <li><a href="../企业客户管理/组织架构.html"><span class="glyphicon glyphicon-cog font24 icon-nav-block" aria-hidden="true" style="margin-top:-2px; margin-bottom:2px;"></span>差旅管理</a></li>
-      </ul>
-    </div>
-    <!-- /.navbar-collapse -->
-  </div>
-</nav>
-<!-- header end -->
-<!-- 管理模板 -->
-<div class="container bg-gray-eee box-shadow mar-top-140 mar-bottom-30" style="padding-right:0px; padding-left:0px; position:relative;">
-  <!-- nav -->
-  <div class="nav-menu">
-    <ul>
-      <li><a href="订单列表.html">常规订单</a></li>
-      <li><a href="保险订单列表.html"  class="active">保险订单</a></li>
-      <div class="clearfix" ></div>
-    </ul>
-  </div>
-  <!-- nav end -->
-  <!-- main -->
-  <div class="rightCon" style="margin-left:135px;">
-    <!-- 引导 -->
-    <ol class="breadcrumb">
-      <li>首页</li>
-      <li>订单管理</li>
-      <li class="active">保险订单列表</li>
-    </ol>
-    <!-- 引导结束 -->
-    <div class="row">
-      <div class="col-sm-4">
-        <div class="form-group" >
-          <label for="apdiv" class="w90 text-right">创建时间</label>
-          <input type="text" class="form-control input-sm" style=" width:90px; display:inline-block;" id="" placeholder="日期">
-          &nbsp;至&nbsp;
-          <input type="text" class="form-control input-sm" style=" width:90px; display:inline-block;" id="" placeholder="日期">
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="form-group" >
-          <label for="apdiv" class="w90 text-right">PNR编码</label>
-          <input type="text" class="form-control input-sm" style=" width:200px; display:inline-block;" id="" placeholder="编码">
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="form-group"  >
-          <label for="apdiv" class="w90 text-right">保单号</label>
-          <input type="text" class="form-control input-sm" style=" width:200px; display:inline-block;" id="" placeholder="number">
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-4">
-        <div class="form-group">
-          <label for="apdiv2" class="w90 text-right">生效日期</label>
-          <input type="text" class="form-control input-sm" style=" width:90px; display:inline-block;" id="input" placeholder="日期">
-          &nbsp;至&nbsp;
-          <input type="text" class="form-control input-sm" style=" width:90px; display:inline-block;" id="input" placeholder="日期">
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="form-group">
-          <label for="apdiv" class="w90 text-right">订单编号</label>
-          <input type="text" class="form-control input-sm" style=" width:200px; display:inline-block;" id="" placeholder="number">
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="form-group">
-          <label for="apdiv" class="w90 text-right">机票订单号</label>
-          <input type="text" class="form-control input-sm" style=" width:200px; display:inline-block;" id="" placeholder="number">
-        </div>
-      </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-4">
-        <div class="form-group">
-          <label for="apdiv3" class="w90 text-right">产品名称</label>
-          <input type="text" class="form-control input-sm" style=" width:200px; display:inline-block;" id="input2" placeholder="姓名">
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="form-group">
-          <label for="apdiv" class="w90 text-right">被保人</label>
-          <input type="text" class="form-control input-sm" style=" width:200px; display:inline-block;" id="" placeholder="姓名">
-        </div>
-      </div>
-      <div class="col-sm-4">
-        <div class="form-group">
-          <label for="apdiv" class="w90 text-right">订单状态</label>
-          <select name="select" class="form-control input-sm" style=" width:200px; display:inline-block;">
-            <option value="">全部</option>
-            <option value="0">未投保</option>
-            <option value="1">投保中</option>
-            <option value="2">投保成功</option>
-            <option value="3">投保失败</option>
-            <option value="4">退保中</option>
-            <option value="5">退保并且退款成功</option>
-            <option value="6">退保成功退款中</option>
-          </select>
-        </div>
-      </div>
-    </div>
-    <!--<div class="form-group">
+	</head>
+	<body class="bg-body">
+		<!-- header -->
+		<nav class="navbar navbar-default navbar-fixed-top bg-white">
+			<!-- 小导航 -->
+			<nav class="navbar navbar-default" style=" min-height:30px; line-height:30px; margin-bottom:0px; border-radius:0;">
+				<div class="container font12">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+						 aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+							<span class="icon-bar"></span> </button>
+						<!-- <span style=" margin-left:-15px; margin-right:20px;">企业商旅管理</span>-->
+					</div>
+					<ul class="nav navbar-nav nav-top-small userinfo" style="margin-left:-15px;">
+						<li class="dropdown"><a href="../user/login.html" class="dropdown-toggle">
+								请登录</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right nav-top-small">
+						<li class="dropdown"> <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+							 aria-expanded="false"> <i class="icon iconfont font14 " style=" vertical-align:middle;">&#xe62b;</i>
+								028-12345678 <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">（或）028-12345678</a></li>
+								<li><a href="#">（或）028-12345678</a></li>
+								<!--<li role="separator" class="divider"></li>-->
+							</ul>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right nav-top-small">
+						<li><a href="../帮助中心/help.html">帮助中心</a></li>
+					</ul>
+				</div>
+			</nav>
+			<!-- 小导航结束 -->
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					 aria-expanded="false"> <span class="sr-only">Toggle navigation</span> <span class="icon-bar"></span> <span class="icon-bar"></span>
+						<span class="icon-bar"></span> </button>
+					<a class=" " href="../差旅报告/汇总.html"><img src="../../../img/logo.png" width="210" height="70" alt="系统LOGO" class="pull-left mar-right-30"
+						 style="margin-left:-15px;"></a>
+					<h4 class="navbar-brand">成都万里行科技发展有限公司</h4>
+				</div>
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="../在线预订/index.html"><i class="icon iconfont icon-nav-block font24">&#xe620;</i> 在线预订</a></li>
+						<li class="active"><a href="../订单管理/订单列表.html"><i class="icon iconfont icon-nav-block font24">&#xe61c;</i> 订单管理</a></li>
+						<li><a href="../账务中心/总概.html"><span class="glyphicon glyphicon-yen font24 icon-nav-block" aria-hidden="true"
+								 style="margin-top:-2px;  margin-bottom:2px;"></span>账务中心</a></li>
+						<!--<li  ><a href="../差旅报告/汇总.html"><i class="icon iconfont icon-nav-block font24"  >&#xe626;</i>报告中心</a></li>-->
+						<li><a href="../数据中心/交易明细.html"><i class="icon iconfont icon-nav-block font24">&#xe623;</i>数据中心</a></li>
+						<li><a href="../企业客户管理/组织架构.html"><span class="glyphicon glyphicon-cog font24 icon-nav-block" aria-hidden="true"
+								 style="margin-top:-2px; margin-bottom:2px;"></span>差旅管理</a></li>
+					</ul>
+				</div>
+				<!-- /.navbar-collapse -->
+			</div>
+		</nav>
+		<!-- header end -->
+		<!-- 管理模板 -->
+		<div class="container bg-gray-eee box-shadow mar-top-140 mar-bottom-30" style="padding-right:0px; padding-left:0px; position:relative;">
+			<!-- nav -->
+			<div class="nav-menu">
+				<ul>
+					<li><a href="订单列表.html">常规订单</a></li>
+					<li><a href="保险订单列表.html" class="active">保险订单</a></li>
+					<div class="clearfix"></div>
+				</ul>
+			</div>
+			<!-- nav end -->
+			<!-- main -->
+			<div class="rightCon" style="margin-left:135px;">
+				<!-- 引导 -->
+				<ol class="breadcrumb">
+					<li>首页</li>
+					<li>订单管理</li>
+					<li class="active">保险订单列表</li>
+				</ol>
+				<!-- 引导结束 -->
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="apdiv" class="w90 text-right">创建时间</label>
+							<input type="text" class="form-control input-sm" style=" width:90px; display:inline-block;" id="" placeholder="日期">
+							&nbsp;至&nbsp;
+							<input type="text" class="form-control input-sm" style=" width:90px; display:inline-block;" id="" placeholder="日期">
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="apdiv" class="w90 text-right">PNR编码</label>
+							<input type="text" class="form-control input-sm" style=" width:200px; display:inline-block;" id="" placeholder="编码">
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="apdiv" class="w90 text-right">保单号</label>
+							<input type="text" class="form-control input-sm" style=" width:200px; display:inline-block;" id="" placeholder="number">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="apdiv2" class="w90 text-right">生效日期</label>
+							<input type="text" class="form-control input-sm" style=" width:90px; display:inline-block;" id="input"
+							 placeholder="日期">
+							&nbsp;至&nbsp;
+							<input type="text" class="form-control input-sm" style=" width:90px; display:inline-block;" id="input"
+							 placeholder="日期">
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="apdiv" class="w90 text-right">订单编号</label>
+							<input type="text" class="form-control input-sm" style=" width:200px; display:inline-block;" id="" placeholder="number">
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="apdiv" class="w90 text-right">机票订单号</label>
+							<input type="text" class="form-control input-sm" style=" width:200px; display:inline-block;" id="" placeholder="number">
+						</div>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="apdiv3" class="w90 text-right">产品名称</label>
+							<input type="text" class="form-control input-sm" style=" width:200px; display:inline-block;" id="input2"
+							 placeholder="姓名">
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="apdiv" class="w90 text-right">被保人</label>
+							<input type="text" class="form-control input-sm" style=" width:200px; display:inline-block;" id="" placeholder="姓名">
+						</div>
+					</div>
+					<div class="col-sm-4">
+						<div class="form-group">
+							<label for="apdiv" class="w90 text-right">订单状态</label>
+							<select name="select" class="form-control input-sm" style=" width:200px; display:inline-block;">
+								<option value="">全部</option>
+								<option value="0">未投保</option>
+								<option value="1">投保中</option>
+								<option value="2">投保成功</option>
+								<option value="3">投保失败</option>
+								<option value="4">退保中</option>
+								<option value="5">退保并且退款成功</option>
+								<option value="6">退保成功退款中</option>
+							</select>
+						</div>
+					</div>
+				</div>
+				<!--<div class="form-group">
           <label class="sr-only" for="apdiv">联系人</label>
           <input type="text" class="form-control" style=" width:100px;" id="" placeholder="联系人姓名">
         </div>
@@ -190,255 +199,296 @@
           <label class="sr-only" for="apdiv">联系电话</label>
           <input type="text" class="form-control" style=" width:120px;" id="" placeholder="联系电话">
         </div>-->
-    <div class="text-center mar-top-10 bor-top-solid-1 pad-top-10 mar-bottom-10">
-      <button type="submit" class="btn btn-primary btn-sm mar-right-20">查询</button>
-      <button type="submit" class="btn btn-default btn-sm mar-right-20">清空条件</button>
-    </div>
-    <table border="0" cellspacing="0" cellpadding="0" class="table table-hover table-striped font12 table-bordered v-align-top" >
-      <tr >
-        <th>创建时间</th>
-        <th>被保人信息</th>
-        <th>产品信息</th>
-        <th>机票订单信息</th>
-        <th>销售价</th>
-        <th width="70" style="width:65px;">订单状态</th>
-      </tr>
-      <tr>
-        <td><p>2016-01-14</p>
-          <p>09:20</p></td>
-        <td>黄兵(M)<br>51092219730810827X（护照）<br>生日：1982-02-02<br>手机：18273311896</td>
-        <td>订单号： 1602161104268300101001810 <br>中国人保 20元旅游航意险（10天）<br>
-          有效期：2016-02-17 至 2016-02-26<br>
-          保单号：<a href="http://www.e-picclife.com/" target="_blank">005108633797158</a></td>
-        <td>机票单号：<a href="../订单管理/订单详情.html" target="_blank">1602161104268300101001810</a><br>
-          PNR：HQFWV5<br>
-        已取消</td>
-        <td>20.00</td>
-        <td><span class="red">投保失败</span></td>
-      </tr>
-      <tr>
-        <td><p>2016-01-14</p>
-          <p>09:20</p></td>
-        <td>李秋梅(F)<br>
-          511526199609270928（身份证）<br>
-          手机：18273311896</td>
-        <td>订单号： 1602161104268300101001810 <br>
-          中国人保 20元旅游航意险（10天）<br>
-          有效期：2016-02-17 至 2016-02-26<br>
-          保单号：<a href="http://www.e-picclife.com/" target="_blank">005108633797158</a></td>
-        <td>机票单号：<a href="../订单管理/订单详情.html" target="_blank">1602161104268300101001810</a> <br>
-          PNR：HQFWV5<br>
-          正常</td>
-        <td>100.00</td>
-        <td><span class=" green-middle">投保成功</span></td>
-      </tr>
-    </table>
-    <nav class="pull-right " >
-      <ul class="pagination pagination-sm" style=" margin-top:0px;">
-        <li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
-        <li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
-        <li><a href="#">2</a></li>
-        <li><a href="#">...</a></li>
-        <li><a href="#">5</a></li>
-        <li> <a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a> </li>
-      </ul>
-      <div class="clearfix"></div>
-    </nav>
-    <div class="clearfix"></div>
-  </div>
-</div>
-<!-- main end -->
-</div>
-<!-- 管理模板 结束 -->
+				<div class="text-center mar-top-10 bor-top-solid-1 pad-top-10 mar-bottom-10">
+					<button type="submit" class="btn btn-primary btn-sm mar-right-20">查询</button>
+					<button type="submit" class="btn btn-default btn-sm mar-right-20">清空条件</button>
+				</div>
+				<table border="0" cellspacing="0" cellpadding="0" class="table table-hover table-striped font12 table-bordered v-align-top">
+					<tr>
+						<th>创建时间</th>
+						<th>被保人信息</th>
+						<th>产品信息</th>
+						<th>机票订单信息</th>
+						<th>销售价</th>
+						<th width="70" style="width:65px;">订单状态</th>
+					</tr>
+					<tr>
+						<td>
+							<p>2016-01-14</p>
+							<p>09:20</p>
+						</td>
+						<td>黄兵(M)<br>51092219730810827X（护照）<br>生日：1982-02-02<br>手机：18273311896</td>
+						<td>订单号： 1602161104268300101001810 <br>中国人保 20元旅游航意险（10天）<br>
+							有效期：2016-02-17 至 2016-02-26<br>
+							保单号：<a href="http://www.e-picclife.com/" target="_blank">005108633797158</a></td>
+						<td>机票单号：<a href="../订单管理/订单详情.html" target="_blank">1602161104268300101001810</a><br>
+							PNR：HQFWV5<br>
+							已取消</td>
+						<td>20.00</td>
+						<td><span class="red">投保失败</span></td>
+					</tr>
+					<tr>
+						<td>
+							<p>2016-01-14</p>
+							<p>09:20</p>
+						</td>
+						<td>李秋梅(F)<br>
+							511526199609270928（身份证）<br>
+							手机：18273311896</td>
+						<td>订单号： 1602161104268300101001810 <br>
+							中国人保 20元旅游航意险（10天）<br>
+							有效期：2016-02-17 至 2016-02-26<br>
+							保单号：<a href="http://www.e-picclife.com/" target="_blank">005108633797158</a></td>
+						<td>机票单号：<a href="../订单管理/订单详情.html" target="_blank">1602161104268300101001810</a> <br>
+							PNR：HQFWV5<br>
+							正常</td>
+						<td>100.00</td>
+						<td><span class=" green-middle">投保成功</span></td>
+					</tr>
+				</table>
+				<nav class="pull-right ">
+					<ul class="pagination pagination-sm" style=" margin-top:0px;">
+						<li class="disabled"><a href="#" aria-label="Previous"><span aria-hidden="true">&laquo;</span></a></li>
+						<li class="active"><a href="#">1 <span class="sr-only">(current)</span></a></li>
+						<li><a href="#">2</a></li>
+						<li><a href="#">...</a></li>
+						<li><a href="#">5</a></li>
+						<li> <a href="#" aria-label="Next"> <span aria-hidden="true">&raquo;</span> </a> </li>
+					</ul>
+					<div class="clearfix"></div>
+				</nav>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<!-- main end -->
+		</div>
+		<!-- 管理模板 结束 -->
 
 
 
-<!-- 退票弹框 -->
-<div id="rev" style="display:none">
-  <div class="modal-body" >
-    <div class="pad-10">
-    <h4>行程信息</h4>
-      <table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-bordered mar-bottom-10">
-  <tr class=" bg-gray-f5">
-    <th><input name="" type="checkbox" value=""></th>
-    <th>航班号</th>
-    <th>起飞时间</th>
-    <th>到达时间</th>
-    <th>行程</th>
-  </tr>
-  <tr>
-    <td><input name="" type="checkbox" value=""></td>
-    <td>CA8954</td>
-    <td>2014-10-18 7:50:00</td>
-    <td>2014-10-18 12:25:00</td>
-    <td>成都双流 - 上海浦东</td>
-  </tr>
-</table>
+		<!-- 退票弹框 -->
+		<div id="rev" style="display:none">
+			<div class="modal-body">
+				<div class="pad-10">
+					<h4>行程信息</h4>
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-bordered mar-bottom-10">
+						<tr class=" bg-gray-f5">
+							<th><input name="" type="checkbox" value=""></th>
+							<th>航班号</th>
+							<th>起飞时间</th>
+							<th>到达时间</th>
+							<th>行程</th>
+						</tr>
+						<tr>
+							<td><input name="" type="checkbox" value=""></td>
+							<td>CA8954</td>
+							<td>2014-10-18 7:50:00</td>
+							<td>2014-10-18 12:25:00</td>
+							<td>成都双流 - 上海浦东</td>
+						</tr>
+					</table>
 
-<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-bordered mar-bottom-10">
-  <tr class=" bg-gray-f5">
-    <th><input name="" type="checkbox" value=""></th>
-    <th>姓名</th>
-    <th>乘客类型</th>
-    <th>证件类型</th>
-    <th>证件号码</th>
-    <th>机建/燃油</th>
-    <th>企业结算价</th>
-  </tr>
-  <tr>
-    <td><input name="" type="checkbox" value=""></td>
-    <td>荣思佳</td>
-    <td>成人</td>
-    <td>身份证</td>
-    <td>510301198808081018</td>
-    <td>￥100/￥280</td>
-    <td>￥1440</td>
-  </tr>
-  <tr>
-    <td><input name="" type="checkbox" value=""></td>
-    <td>李冬阳</td>
-    <td>成人</td>
-    <td>身份证</td>
-    <td>510301198808081018</td>
-    <td>￥100/￥280</td>
-    <td>￥1440</td>
-  </tr>
-</table>
-  <form class="form-horizontal">
-  <div class="form-group">
-    <label for="inputEmail3" class="col-sm-3 control-label">退票原因</label>
-    <div class="col-sm-6">
-      <input type="text" class="form-control" id="inputEmail3" placeholder="请输入退票理由">
-    </div>
-  </div>
-</form>
-  
-    </div>
-  </div>
-  <div class="modal-footer mar-top-5">
-    <button type="button" class="btn btn-primary" onClick="layer.closeAll()">申请退票</button>
-    </a>
-<button type="button" class="btn btn-default"  onClick="layer.closeAll()" >关闭</button>
-  </div>
-</div>
+					<table width="100%" border="0" cellspacing="0" cellpadding="0" class="table table-bordered mar-bottom-10">
+						<tr class=" bg-gray-f5">
+							<th><input name="" type="checkbox" value=""></th>
+							<th>姓名</th>
+							<th>乘客类型</th>
+							<th>证件类型</th>
+							<th>证件号码</th>
+							<th>机建/燃油</th>
+							<th>企业结算价</th>
+						</tr>
+						<tr>
+							<td><input name="" type="checkbox" value=""></td>
+							<td>荣思佳</td>
+							<td>成人</td>
+							<td>身份证</td>
+							<td>510301198808081018</td>
+							<td>￥100/￥280</td>
+							<td>￥1440</td>
+						</tr>
+						<tr>
+							<td><input name="" type="checkbox" value=""></td>
+							<td>李冬阳</td>
+							<td>成人</td>
+							<td>身份证</td>
+							<td>510301198808081018</td>
+							<td>￥100/￥280</td>
+							<td>￥1440</td>
+						</tr>
+					</table>
+					<form class="form-horizontal">
+						<div class="form-group">
+							<label for="inputEmail3" class="col-sm-3 control-label">退票原因</label>
+							<div class="col-sm-6">
+								<input type="text" class="form-control" id="inputEmail3" placeholder="请输入退票理由">
+							</div>
+						</div>
+					</form>
 
-<!-- 申请改签弹框 -->
-<div id="gaiqian" style="display:none">
-  <div class="modal-body" >
-    <form class="form-horizontal">
-      <div class="form-group">
-        <label for="" class="col-sm-4 control-label">改签乘机人：</label>
-        <div class="col-sm-6">
-          <label class="checkbox-inline" style=" margin-left:10px;">
-            <input type="checkbox" id="inlineCheckbox1" value="option1"> 孙靖
-          </label>
-           <label class="checkbox-inline">
-            <input type="checkbox" id="inlineCheckbox1" value="option1"> 尚丁明
-          </label>
-           <label class="checkbox-inline">
-            <input type="checkbox" id="inlineCheckbox1" value="option1"> 胡家富
-          </label>
-           <label class="checkbox-inline">
-            <input type="checkbox" id="inlineCheckbox1" value="option1"> 刘述军
-          </label>
-           <label class="checkbox-inline">
-            <input type="checkbox" id="inlineCheckbox1" value="option1"> 王博玉
-          </label>
-        </div>
-      </div>
-      
-      <div class="form-group">
-        <label for="" class="col-sm-4 control-label">期望日期：</label>
-        <div class="col-sm-6">
-           <input type="text" class="form-control" id="" placeholder="请选择日期" onClick="WdatePicker()">
-        </div>
-      </div>
-      
-      <div class="form-group">
-        <label for="" class="col-sm-4 control-label">期望时间：</label>
-        <div class="col-sm-6">
-          <select name="select" class="form-control " >
-            <option value="">不限</option>
-            <option value="">上午</option>
-            <option value="">中午</option>
-            <option value="">下午</option>
-            <option value="">晚上</option>
-            <option value="">凌晨</option>
-          </select>
-          
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="" class="col-sm-4 control-label">期望航司：</label>
-        <div class="col-sm-6">
-          <select name="select" class="form-control " >
-            <option value="">不限</option>
-            <option value="">中国航空</option>
-            <option value="">南方航空</option>
-            <option value="">四川航空</option>
-          </select>
-        </div>
-      </div>
-      <div class="form-group">
-        <label for="" class="col-sm-4 control-label">期望仓位：</label>
-        <div class="col-sm-6">
-          <select name="select" class="form-control " >
-            <option value="">不限</option>
-            <option value="">经济舱</option>
-            <option value="">头等舱</option>
-          </select>
-        </div>
-      </div>
-      
-      <div class="form-group">
-        <label for="" class="col-sm-4 control-label">备注说明：</label>
-        <div class="col-sm-6">
-           <input type="text" class="form-control" id="" placeholder="限255字" >
-        </div>
-      </div>
-    </form>
-  </div>
-  <div class="modal-footer">
-    <button type="button" class="btn btn-primary" onClick="submittip()">确 定</button>
-    <button type="button" class="btn btn-default"  onClick="layer.closeAll()">关 闭</button>  
-  </div>
-</div>
+				</div>
+			</div>
+			<div class="modal-footer mar-top-5">
+				<button type="button" class="btn btn-primary" onClick="layer.closeAll()">申请退票</button>
+				</a>
+				<button type="button" class="btn btn-default" onClick="layer.closeAll()">关闭</button>
+			</div>
+		</div>
 
-<script>
-$(document).ready(function() {		
-	
-	$(".quxiao").click(function(){  //取消订单
-	   layer.confirm('您确定要取消该订单？', {
-	   title :'取消订单',
-       btn: ['确定','取消'] //按钮
-       }, function(){
-       layer.msg('该订单已取消', {icon: 1});
-       });
-	});
-	
-	$(".tuipiao").click(function(){  //申请退票
-	  layer.open({
-	  type: 1,
-	  title: '申请退票',
-      area: ['auto', 'auto'],
-      fix: false, //不固定
-      maxmin: false,
-      content: $('#rev'),
-      });
-	});
-	
-	$(".qiye09").click(function(){  //申请改签
-	   layer.open({
-       type: 1,
-       shift: 2,  //出场动画
-       area: ['500px', 'auto'],
-	   title :'申请改签',
-       shadeClose: true, //开启遮罩关闭
-       content: $('#gaiqian'),
-       });
-	});
-		
-});
-</script>
-</body>
+		<!-- 申请改签弹框 -->
+		<div id="gaiqian" style="display:none">
+			<div class="modal-body">
+				<form class="form-horizontal">
+					<div class="form-group">
+						<label for="" class="col-sm-4 control-label">改签乘机人：</label>
+						<div class="col-sm-6">
+							<label class="checkbox-inline" style=" margin-left:10px;">
+								<input type="checkbox" id="inlineCheckbox1" value="option1"> 孙靖
+							</label>
+							<label class="checkbox-inline">
+								<input type="checkbox" id="inlineCheckbox1" value="option1"> 尚丁明
+							</label>
+							<label class="checkbox-inline">
+								<input type="checkbox" id="inlineCheckbox1" value="option1"> 胡家富
+							</label>
+							<label class="checkbox-inline">
+								<input type="checkbox" id="inlineCheckbox1" value="option1"> 刘述军
+							</label>
+							<label class="checkbox-inline">
+								<input type="checkbox" id="inlineCheckbox1" value="option1"> 王博玉
+							</label>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="" class="col-sm-4 control-label">期望日期：</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="" placeholder="请选择日期" onClick="WdatePicker()">
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="" class="col-sm-4 control-label">期望时间：</label>
+						<div class="col-sm-6">
+							<select name="select" class="form-control ">
+								<option value="">不限</option>
+								<option value="">上午</option>
+								<option value="">中午</option>
+								<option value="">下午</option>
+								<option value="">晚上</option>
+								<option value="">凌晨</option>
+							</select>
+
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="" class="col-sm-4 control-label">期望航司：</label>
+						<div class="col-sm-6">
+							<select name="select" class="form-control ">
+								<option value="">不限</option>
+								<option value="">中国航空</option>
+								<option value="">南方航空</option>
+								<option value="">四川航空</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="" class="col-sm-4 control-label">期望仓位：</label>
+						<div class="col-sm-6">
+							<select name="select" class="form-control ">
+								<option value="">不限</option>
+								<option value="">经济舱</option>
+								<option value="">头等舱</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group">
+						<label for="" class="col-sm-4 control-label">备注说明：</label>
+						<div class="col-sm-6">
+							<input type="text" class="form-control" id="" placeholder="限255字">
+						</div>
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-primary" onClick="submittip()">确 定</button>
+				<button type="button" class="btn btn-default" onClick="layer.closeAll()">关 闭</button>
+			</div>
+		</div>
+
+		<script>
+			$(document).ready(function() {
+
+				$(".quxiao").click(function() { //取消订单
+					layer.confirm('您确定要取消该订单？', {
+						title: '取消订单',
+						btn: ['确定', '取消'] //按钮
+					}, function() {
+						layer.msg('该订单已取消', {
+							icon: 1
+						});
+					});
+				});
+
+				$(".tuipiao").click(function() { //申请退票
+					layer.open({
+						type: 1,
+						title: '申请退票',
+						area: ['auto', 'auto'],
+						fix: false, //不固定
+						maxmin: false,
+						content: $('#rev'),
+					});
+				});
+
+				$(".qiye09").click(function() { //申请改签
+					layer.open({
+						type: 1,
+						shift: 2, //出场动画
+						area: ['500px', 'auto'],
+						title: '申请改签',
+						shadeClose: true, //开启遮罩关闭
+						content: $('#gaiqian'),
+					});
+				});
+
+			});
+		</script>
+		<script>
+			$(function() {
+				
+				/* 用户退出 */
+				function logout(){
+					$.ajax({
+						url: "../../api/logout.action",
+						type: "get",
+						data: {},
+						success: function(data) {
+							window.location.href="../index.html";
+						}
+					});
+				}
+				
+				/* 用户信息 */
+				var strcookie = document.cookie; //获取cookie字符串
+				var arrcookie = strcookie.split("; "); //分割
+				// 遍历匹配
+				for (var i = 0; i < arrcookie.length; i++) {
+					var arr = arrcookie[i].split("=");
+					if (arr[0] == "user") {
+						$(".userinfo").html("");
+						$(".userinfo").append(
+							'<li class="dropdown"><a href="javascript:;" class="dropdown-toggle"' +
+							'data-toggle="dropdown" role="button" aria-haspopup="true" ' +
+							'aria-expanded="false">您好，' + arr[1] + '<span class="caret"></span></a>' +
+							'<ul class="dropdown-menu">' +
+							'<li><a href="系统管理/修改密码.html">修改密码</a></li>\n' +
+							'<li><a href="javascript:;" onclick="logout()">退出</a></li>' +
+							'</ul></li>');
+					}
+				}
+			})
+		</script>
+	</body>
 </html>

@@ -36,7 +36,7 @@ $(function() {
 			}, 
 			success: function(data){
 				if(data == "验证码错误"){
-					alert(data);
+					Tip('验证码错误！');
 				}else{
 					var yes=step.nextStep();
 				}

@@ -38,7 +38,7 @@ function cliLogin() {
 	
 	$.ajax({ 
 		url: "../../api/login.action", 
-		type:"get",
+		type:"post",
 		data: {
 			"phone":txtUser,
 			"password":txtPwd

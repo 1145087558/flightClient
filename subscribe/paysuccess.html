@@ -243,10 +243,14 @@ $(document).ready(function() {
 			data:{},
 			success:function(){
 				
+			},
+			error:function(error){
+				if(error.status==403){
+					window.location.href="../user/login.html";
+				}
 			}
 		})
-	})
-	
+	});
 </script>
 </body>
 </html>

@@ -46,7 +46,9 @@
 						<!-- <span style=" margin-left:-15px; margin-right:20px;">企业商旅管理</span>-->
 					</div>
 					<ul class="nav navbar-nav nav-top-small userinfo" style="margin-left:-15px;">
-					
+						<li class="dropdown"><a href="../user/login.html" class="dropdown-toggle">
+								请登录</a>
+						</li>
 					</ul>
 					<ul class="nav navbar-nav navbar-right nav-top-small">
 						<li class="dropdown">
@@ -514,6 +516,9 @@
 					},
 					error: function(error) {
 						console.log(error);
+						if(error.status==403){
+							window.location.href="../user/login.html";
+						}
 					}
 
 				});
@@ -537,6 +542,18 @@
 					},
 					error: function(error) {
 						console.log(error);
+					}
+				});
+			}
+			
+			/* 用户退出 */
+			function logout(){
+				$.ajax({
+					url: "../../api/logout.action",
+					type: "get",
+					data: {},
+					success: function(data) {
+						window.location.href="../index.html";
 					}
 				});
 			}

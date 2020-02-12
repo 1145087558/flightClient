@@ -1,32 +1,32 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
-<head>
-<meta charset="utf-8">
-<!-- IE 浏览器运行最新的渲染模式-->
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<!-- 启用响应式特性 -->
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<!-- 双核使用webkit内核 -->
-<meta name="renderer" content="webkit">
-<title>订单列表</title>
-<link href="../../../css/bootstrap.min.css" rel="stylesheet">
-<link href="../../../css/common.css" rel="stylesheet">
-<link href="../../../css/corptravel.css" rel="stylesheet">
-<link href="../../../css/enterprise.css" rel="stylesheet">
-<!-- IconFont图标 -->
-<link href="../../../css/iconfont.css" rel="stylesheet">
-<script src="../../../js/jquery-1.9.1.min.js"></script>
-<script type="text/javascript" src="../../../js/bootstrap.min.js"></script>
-<!-- 兼容IE8 -->
-<!--[if lte IE 9]>
+	<head>
+		<meta charset="utf-8">
+		<!-- IE 浏览器运行最新的渲染模式-->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- 启用响应式特性 -->
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<!-- 双核使用webkit内核 -->
+		<meta name="renderer" content="webkit">
+		<title>订单列表</title>
+		<link href="../../../css/bootstrap.min.css" rel="stylesheet">
+		<link href="../../../css/common.css" rel="stylesheet">
+		<link href="../../../css/corptravel.css" rel="stylesheet">
+		<link href="../../../css/enterprise.css" rel="stylesheet">
+		<!-- IconFont图标 -->
+		<link href="../../../css/iconfont.css" rel="stylesheet">
+		<script src="../../../js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="../../../js/bootstrap.min.js"></script>
+		<!-- 兼容IE8 -->
+		<!--[if lte IE 9]>
 <script type="text/javascript" src="../../js/html5shiv.min.js"></script>
 <script type="text/javascript" src="../../js/respond.min.js"></script>
 <![endif]-->
 
-<!-- layer弹框 2.1 -->
-<script type="text/javascript" src="../../../js/layer/layer.js"></script>
-<script>
-$(document).ready(function() {	
+		<!-- layer弹框 2.1 -->
+		<script type="text/javascript" src="../../../js/layer/layer.js"></script>
+		<script>
+			$(document).ready(function() {	
 	$(".qiye01").click(function(){  //查看企业
 	   layer.open({
        type: 1,
@@ -85,213 +85,254 @@ $(document).ready(function() {
 </script>
 
 
-</head>
-<body class="bg-body">
+	</head>
+	<body class="bg-body">
 
-<!-- header -->
-<nav class="navbar navbar-default navbar-fixed-top bg-white" >
-<!-- 小导航 -->
-<nav class="navbar navbar-default" style=" min-height:30px; line-height:30px; margin-bottom:0px; border-radius:0;">
-  <div class="container font12">
-    <!-- Brand and toggle get grouped for better mobile display -->
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-     <!-- <span style=" margin-left:-15px; margin-right:20px;">企业商旅管理</span>-->
-    </div>
-    <ul class="nav navbar-nav nav-top-small" style="margin-left:-15px;" >
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">您好，孙靖 <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../系统管理/修改密码.html">修改密码</a></li>
-            <li><a href="#">退出</a></li>
-          </ul>
-        </li>       
-      </ul>
-<ul class="nav navbar-nav navbar-right nav-top-small">
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="icon iconfont font14 " style=" vertical-align:middle;"  >&#xe62b;</i> 028-12345678 <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="#">（或）028-12345678</a></li>
-            <li><a href="#">（或）028-12345678</a></li>
-            <!--<li role="separator" class="divider"></li>-->
-          </ul>
-        </li>
-        
-      </ul>
-    <ul class="nav navbar-nav navbar-right nav-top-small">
-        <li><a href="../帮助中心/help.html">帮助中心</a></li>
-        
-      </ul>
-  </div>
-</nav>
-<!-- 小导航结束 -->
+		<!-- header -->
+		<nav class="navbar navbar-default navbar-fixed-top bg-white">
+			<!-- 小导航 -->
+			<nav class="navbar navbar-default" style=" min-height:30px; line-height:30px; margin-bottom:0px; border-radius:0;">
+				<div class="container font12">
+					<!-- Brand and toggle get grouped for better mobile display -->
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+						 aria-expanded="false">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+						<!-- <span style=" margin-left:-15px; margin-right:20px;">企业商旅管理</span>-->
+					</div>
+					<ul class="nav navbar-nav nav-top-small userinfo" style="margin-left:-15px;">
+						<li class="dropdown"><a href="../user/login.html" class="dropdown-toggle">
+								请登录</a>
+						</li>
+					</ul>
+					<ul class="nav navbar-nav navbar-right nav-top-small">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+								<i class="icon iconfont font14 " style=" vertical-align:middle;">&#xe62b;</i> 028-12345678 <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#">（或）028-12345678</a></li>
+								<li><a href="#">（或）028-12345678</a></li>
+								<!--<li role="separator" class="divider"></li>-->
+							</ul>
+						</li>
 
-  <div class="container">
-    <div class="navbar-header">
-      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-        <span class="sr-only">Toggle navigation</span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-        <span class="icon-bar"></span>
-      </button>
-      <a class=" " href="../差旅报告/汇总.html" ><img src="../../../img/logo.png" width="210" height="70" alt="系统LOGO" class="pull-left mar-right-30" style="margin-left:-15px;" ></a>
-      <h4 class="navbar-brand font24" >成都万里行科技发展有限公司</h4>
-    </div>
-    
-    <!-- Collect the nav links, forms, and other content for toggling -->
-    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="../在线预订/index.html"><i class="icon iconfont icon-nav-block font24" >&#xe620;</i> 在线预订</a></li>
-         <li class="active"><a href="../订单管理/订单列表.html"><i class="icon iconfont icon-nav-block font24" >&#xe61c;</i> 订单管理</a></li>
-         <li ><a href="../账务中心/总概.html"><span class="glyphicon glyphicon-yen font24 icon-nav-block" aria-hidden="true" style="margin-top:-2px;  margin-bottom:2px;"></span>账务中心</a></li>
-        <!--<li  ><a href="../差旅报告/汇总.html"><i class="icon iconfont icon-nav-block font24"  >&#xe626;</i>报告中心</a></li>-->
-        <li><a href="../数据中心/交易明细.html"><i class="icon iconfont icon-nav-block font24"  >&#xe623;</i>数据中心</a></li>
-        <li><a href="../企业客户管理/组织架构.html"><span class="glyphicon glyphicon-cog font24 icon-nav-block" aria-hidden="true" style="margin-top:-2px; margin-bottom:2px;"></span>差旅管理</a></li>
-        
-      </ul>
-    </div><!-- /.navbar-collapse -->
-    
-  </div>
-</nav>
-<!-- header end -->
+					</ul>
+					<ul class="nav navbar-nav navbar-right nav-top-small">
+						<li><a href="../帮助中心/help.html">帮助中心</a></li>
 
-<!-- 管理模板 -->
-<div class="container bg-gray-eee box-shadow mar-top-140 mar-bottom-30" style="padding-right:0px; padding-left:0px; position:relative;">
- <!-- nav -->
-   
-  <!-- nav end --> 
+					</ul>
+				</div>
+			</nav>
+			<!-- 小导航结束 -->
 
-<!-- main -->
-  <div class="rightCon">
-    <!-- 引导 -->
-    <ol class="breadcrumb">
-      <li>首页</li>
-  
-      <li>订单管理</li> 
-      <li>订单列表</li>
-      <li class="active">保险订单详情</li>
-    </ol>
-    <!-- 引导结束 -->
+			<div class="container">
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"
+					 aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class=" " href="../差旅报告/汇总.html"><img src="../../../img/logo.png" width="210" height="70" alt="系统LOGO" class="pull-left mar-right-30"
+						 style="margin-left:-15px;"></a>
+					<h4 class="navbar-brand font24">成都万里行科技发展有限公司</h4>
+				</div>
 
-    <h3>保险订单信息</h3>
-    <table border="0" cellspacing="0" cellpadding="0" class="table font12  v-align-top bor-bottom-solid-1" >
-      <tr class="bg-gray-f5">
-        <th>创建时间</th>
-        <th>被保人信息</th>
-        <th>产品信息</th>
-        <th>机票订单信息</th>
-        <th align="center">订单状态</th>
-        <th class=" bg-gray-f5 text-right">投保金额</th>
-      </tr>
-      <tr class="">
-        <td>16-01-15 09:19</td>
-        <td>黄兵(M)<br>
-          51092219730810827X（护照）<br>
-          生日：1982-02-02<br>
-        手机：18273311896</td>
-        <td>订单号： 1602161104268300101001810 <br>
-          中国人保 20元旅游航意险（10天）<br>
-有效期：2016-02-17 至 2016-02-26<br>
-保单号：005108633797158</td>
-        <td>机票单号： <a href="../订单管理/订单详情.html" target="_blank">1602161104268300101001810</a><br>
-          PNR：HQFWV5<br>
-        正常</td>
-        <td ><span class=" green-middle">投保成功</span></td>
-        <td align="right" style="color:#ff0253; font-size:14px; font-weight:bold;">20.00</td>
-      </tr>
-    </table>
-    <h3>保险说明</h3>
-    <div class="lh25 pad-10 mar-bottom-20" style="background-color:#f4f2f2;">
-      <h4 class=""><strong>国内旅游计划三 保险责任</strong></h4>
-              <p> 1.意外身故或残疾	10万<br />
-                2.急性病身故	10万<br />
-                3.意外医疗	2万<br />
-                4.丧葬费用	0.5万<br />
-                <br />
-                适用条款：《平安个人旅行意外伤害保险条款》、《平安旅行附加急性病身故或全残保险条款》、《平安旅行附加医疗费用补偿保险条款》<br />
-                保险范围：承保被保险人在旅行期间因意外伤害事故或突发急性病发生的保险事故；其中国内旅游计划一、二、三、四、境内自由人适用范围为中华人民共和国（港澳台除外）境内，出入境旅游计划适用范围为中华人民共和国公民前往中华人民共和国境外（包括港澳台）旅行，和非中华人民共和国公民进入中华人民共和国（港澳台除外）境内旅行。<br />
-                投保年龄：0-75周岁<br />
-                免赔条件：医疗费用的免赔额为100元，超过部分按100%的比例赔付。<br />
-              保额限制：每一被保险人限投一份，多投部分无效，18周岁以下的未成年人的身故保险金额以10万元为限。 </p></div>
-    <!--<h5 id="liebiao" class="mar-left-20" style="cursor:pointer; color:#337ab7;" align="right">退改签说明&nbsp;</h5>-->
-<div id="biaoge" style="display:none;">
-        <table border="0" cellspacing="0" cellpadding="0" class="table font12  table-bordered table-striped v-align-top bor-bottom-solid-1 mar-left-20" style="width:1100px;">
-      <tr class=" bg-gray-f5-f5">
-        <th>乘机人类型</th>
-        <th>退改签时间节点</th>
-        <th>退票手续费</th>
-        <th>改期加收手续费</th>
-        <th>签转</th>
-      </tr>
-      <tr>
-        <td rowspan="2" class="font16">成人票</td>
-        <td><p>起飞前</p></td>
-        <td>￥355/人</td>
-        <td>￥213/人</td>
-        <td rowspan="2">不可签转<span style="color:#ff0253; font-size:14px; font-weight:bold;"></span></td>
-      </tr>
-      <tr class="">
-        <td class="bg-white">起飞后</td>
-        <td class="bg-white">只退机建燃油</td>
-        <td class="bg-white">￥355/人</td>
-      </tr>
-      
-    </table></div>
-<h3>支付信息</h3>
-    <table border="0" cellspacing="0" cellpadding="0" class="table  font12  v-align-top bor-bottom-solid-1" >
-      <tr class="bg-gray-f5">
-        <th>方式</th>
-        <th>时间</th>
-        <th>交易号</th>
-        <th>付款单位</th>
-        <th>付款账号</th>
-        <th>收款单位</th>
-        <th>收款账号</th>
-        <th>金额</th>
-        <th>收支</th>
-        <th>状态</th>
-        <th>业务类型</th>
-      </tr>
-      <tr class="">
-        <td>预存款</td>
-        <td>16-01-15 11:09</td>
-        <td>TD1601151110166104919</td>
-        <td><abbr title="四川方法数码科技公司">方法数码</abbr></td>
-        <td>111122223333444</td>
-        <td><abbr title="四川龙翔国际旅行社">四川龙翔</abbr></td>
-        <td>111122223333444</td>
-        <td>20.00</td>
-        <td>支</td>
-        <td>已支</td>
-        <td>保险款</td>
-      </tr>
-    </table>
-    <div class="text-center"><input type="button" value="返回" class="btn btn-default" onclick="javascript: history.go(-1);"></div>
-    <div class="clearfix"></div>
-    
-  </div>
-    
-   
-  </div>
-<!-- main end -->
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav navbar-right">
+						<li><a href="../在线预订/index.html"><i class="icon iconfont icon-nav-block font24">&#xe620;</i> 在线预订</a></li>
+						<li class="active"><a href="../订单管理/订单列表.html"><i class="icon iconfont icon-nav-block font24">&#xe61c;</i> 订单管理</a></li>
+						<li><a href="../账务中心/总概.html"><span class="glyphicon glyphicon-yen font24 icon-nav-block" aria-hidden="true"
+								 style="margin-top:-2px;  margin-bottom:2px;"></span>账务中心</a></li>
+						<!--<li  ><a href="../差旅报告/汇总.html"><i class="icon iconfont icon-nav-block font24"  >&#xe626;</i>报告中心</a></li>-->
+						<li><a href="../数据中心/交易明细.html"><i class="icon iconfont icon-nav-block font24">&#xe623;</i>数据中心</a></li>
+						<li><a href="../企业客户管理/组织架构.html"><span class="glyphicon glyphicon-cog font24 icon-nav-block" aria-hidden="true"
+								 style="margin-top:-2px; margin-bottom:2px;"></span>差旅管理</a></li>
 
-</div>
-<!-- 管理模板 结束 -->
+					</ul>
+				</div><!-- /.navbar-collapse -->
 
+			</div>
+		</nav>
+		<!-- header end -->
 
-<script type="text/javascript"> 
-$("#liebiao").click(
-		function(){
-       $("#biaoge").slideToggle();
- 
-});
-</script>
+		<!-- 管理模板 -->
+		<div class="container bg-gray-eee box-shadow mar-top-140 mar-bottom-30" style="padding-right:0px; padding-left:0px; position:relative;">
+			<!-- nav -->
+
+			<!-- nav end -->
+
+			<!-- main -->
+			<div class="rightCon">
+				<!-- 引导 -->
+				<ol class="breadcrumb">
+					<li>首页</li>
+
+					<li>订单管理</li>
+					<li>订单列表</li>
+					<li class="active">保险订单详情</li>
+				</ol>
+				<!-- 引导结束 -->
+
+				<h3>保险订单信息</h3>
+				<table border="0" cellspacing="0" cellpadding="0" class="table font12  v-align-top bor-bottom-solid-1">
+					<tr class="bg-gray-f5">
+						<th>创建时间</th>
+						<th>被保人信息</th>
+						<th>产品信息</th>
+						<th>机票订单信息</th>
+						<th align="center">订单状态</th>
+						<th class=" bg-gray-f5 text-right">投保金额</th>
+					</tr>
+					<tr class="">
+						<td>16-01-15 09:19</td>
+						<td>黄兵(M)<br>
+							51092219730810827X（护照）<br>
+							生日：1982-02-02<br>
+							手机：18273311896</td>
+						<td>订单号： 1602161104268300101001810 <br>
+							中国人保 20元旅游航意险（10天）<br>
+							有效期：2016-02-17 至 2016-02-26<br>
+							保单号：005108633797158</td>
+						<td>机票单号： <a href="../订单管理/订单详情.html" target="_blank">1602161104268300101001810</a><br>
+							PNR：HQFWV5<br>
+							正常</td>
+						<td><span class=" green-middle">投保成功</span></td>
+						<td align="right" style="color:#ff0253; font-size:14px; font-weight:bold;">20.00</td>
+					</tr>
+				</table>
+				<h3>保险说明</h3>
+				<div class="lh25 pad-10 mar-bottom-20" style="background-color:#f4f2f2;">
+					<h4 class=""><strong>国内旅游计划三 保险责任</strong></h4>
+					<p> 1.意外身故或残疾 10万<br />
+						2.急性病身故 10万<br />
+						3.意外医疗 2万<br />
+						4.丧葬费用 0.5万<br />
+						<br />
+						适用条款：《平安个人旅行意外伤害保险条款》、《平安旅行附加急性病身故或全残保险条款》、《平安旅行附加医疗费用补偿保险条款》<br />
+						保险范围：承保被保险人在旅行期间因意外伤害事故或突发急性病发生的保险事故；其中国内旅游计划一、二、三、四、境内自由人适用范围为中华人民共和国（港澳台除外）境内，出入境旅游计划适用范围为中华人民共和国公民前往中华人民共和国境外（包括港澳台）旅行，和非中华人民共和国公民进入中华人民共和国（港澳台除外）境内旅行。<br />
+						投保年龄：0-75周岁<br />
+						免赔条件：医疗费用的免赔额为100元，超过部分按100%的比例赔付。<br />
+						保额限制：每一被保险人限投一份，多投部分无效，18周岁以下的未成年人的身故保险金额以10万元为限。 </p>
+				</div>
+				<!--<h5 id="liebiao" class="mar-left-20" style="cursor:pointer; color:#337ab7;" align="right">退改签说明&nbsp;</h5>-->
+				<div id="biaoge" style="display:none;">
+					<table border="0" cellspacing="0" cellpadding="0" class="table font12  table-bordered table-striped v-align-top bor-bottom-solid-1 mar-left-20"
+					 style="width:1100px;">
+						<tr class=" bg-gray-f5-f5">
+							<th>乘机人类型</th>
+							<th>退改签时间节点</th>
+							<th>退票手续费</th>
+							<th>改期加收手续费</th>
+							<th>签转</th>
+						</tr>
+						<tr>
+							<td rowspan="2" class="font16">成人票</td>
+							<td>
+								<p>起飞前</p>
+							</td>
+							<td>￥355/人</td>
+							<td>￥213/人</td>
+							<td rowspan="2">不可签转<span style="color:#ff0253; font-size:14px; font-weight:bold;"></span></td>
+						</tr>
+						<tr class="">
+							<td class="bg-white">起飞后</td>
+							<td class="bg-white">只退机建燃油</td>
+							<td class="bg-white">￥355/人</td>
+						</tr>
+
+					</table>
+				</div>
+				<h3>支付信息</h3>
+				<table border="0" cellspacing="0" cellpadding="0" class="table  font12  v-align-top bor-bottom-solid-1">
+					<tr class="bg-gray-f5">
+						<th>方式</th>
+						<th>时间</th>
+						<th>交易号</th>
+						<th>付款单位</th>
+						<th>付款账号</th>
+						<th>收款单位</th>
+						<th>收款账号</th>
+						<th>金额</th>
+						<th>收支</th>
+						<th>状态</th>
+						<th>业务类型</th>
+					</tr>
+					<tr class="">
+						<td>预存款</td>
+						<td>16-01-15 11:09</td>
+						<td>TD1601151110166104919</td>
+						<td><abbr title="四川方法数码科技公司">方法数码</abbr></td>
+						<td>111122223333444</td>
+						<td><abbr title="四川龙翔国际旅行社">四川龙翔</abbr></td>
+						<td>111122223333444</td>
+						<td>20.00</td>
+						<td>支</td>
+						<td>已支</td>
+						<td>保险款</td>
+					</tr>
+				</table>
+				<div class="text-center"><input type="button" value="返回" class="btn btn-default" onclick="javascript: history.go(-1);"></div>
+				<div class="clearfix"></div>
+
+			</div>
 
 
-</body>
+		</div>
+		<!-- main end -->
+
+		</div>
+		<!-- 管理模板 结束 -->
+
+
+		<script type="text/javascript">
+			$("#liebiao").click(
+				function() {
+					$("#biaoge").slideToggle();
+
+				});
+		</script>
+
+		<script>
+			$(function() {
+				
+				/* 用户退出 */
+				function logout(){
+					$.ajax({
+						url: "../../api/logout.action",
+						type: "get",
+						data: {},
+						success: function(data) {
+							window.location.href="../index.html";
+						}
+					});
+				}
+				
+				/* 用户信息 */
+				var strcookie = document.cookie; //获取cookie字符串
+				var arrcookie = strcookie.split("; "); //分割
+				// 遍历匹配
+				for (var i = 0; i < arrcookie.length; i++) {
+					var arr = arrcookie[i].split("=");
+					if (arr[0] == "user") {
+						$(".userinfo").html("");
+						$(".userinfo").append(
+							'<li class="dropdown"><a href="javascript:;" class="dropdown-toggle"' +
+							'data-toggle="dropdown" role="button" aria-haspopup="true" ' +
+							'aria-expanded="false">您好，' + arr[1] + '<span class="caret"></span></a>' +
+							'<ul class="dropdown-menu">' +
+							'<li><a href="系统管理/修改密码.html">修改密码</a></li>\n' +
+							'<li><a href="javascript:;" onclick="logout()">退出</a></li>' +
+							'</ul></li>');
+					}
+				}
+			})
+		</script>
+	</body>
 </html>

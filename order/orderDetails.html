@@ -102,15 +102,11 @@ $(document).ready(function() {
       </button>
      <!-- <span style=" margin-left:-15px; margin-right:20px;">企业商旅管理</span>-->
     </div>
-    <ul class="nav navbar-nav nav-top-small" style="margin-left:-15px;" >
-        <li class="dropdown">
-          <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">您好，孙靖 <span class="caret"></span></a>
-          <ul class="dropdown-menu">
-            <li><a href="../系统管理/修改密码.html">修改密码</a></li>
-            <li><a href="#">退出</a></li>
-          </ul>
-        </li>       
-      </ul>
+   <ul class="nav navbar-nav nav-top-small userinfo" style="margin-left:-15px;">
+   	<li class="dropdown"><a href="../user/login.html" class="dropdown-toggle">
+   			请登录</a>
+   	</li>
+   </ul>
 <ul class="nav navbar-nav navbar-right nav-top-small">
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> <i class="icon iconfont font14 " style=" vertical-align:middle;"  >&#xe62b;</i> 028-12345678 <span class="caret"></span></a>
@@ -145,8 +141,8 @@ $(document).ready(function() {
     <!-- Collect the nav links, forms, and other content for toggling -->
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
       <ul class="nav navbar-nav navbar-right">
-        <li  ><a href="../查询列表.html"><i class="icon iconfont icon-nav-block font24" >&#xe620;</i> 在线预订</a></li>
-         <li class="active"><a href="../订单管理/订单列表.html"><i class="icon iconfont icon-nav-block font24" >&#xe61c;</i> 订单管理</a></li>
+        <li  ><a href="../index.html"><i class="icon iconfont icon-nav-block font24" >&#xe620;</i> 在线预订</a></li>
+         <li class="active"><a href="../order/orderList.html"><i class="icon iconfont icon-nav-block font24" >&#xe61c;</i> 订单管理</a></li>
         
       </ul>
     </div><!-- /.navbar-collapse -->
@@ -174,7 +170,7 @@ $(document).ready(function() {
     <!-- 引导结束 -->
 
     <h3>订单信息</h3>
-    <table border="0" cellspacing="0" cellpadding="0" class="table font12  v-align-top bor-bottom-solid-1" >
+    <table id="flightInfo" border="0" cellspacing="0" cellpadding="0" class="table font12  v-align-top bor-bottom-solid-1" >
       <tr class=" bg-gray-f5">
         <th style="width:20%">行程（单程）</th>
         <th style="width:25%">起飞时间/机场</th>
@@ -182,27 +178,19 @@ $(document).ready(function() {
         <th style="width:15%">航班号</th>
         <th style="width:15%">舱位</th>
       </tr>
-      <tr class="">
-        <td class="font16"><strong class="blue-0093dd">三亚</strong> <span class="font12">至</span> <strong class="blue-0093dd">哈尔滨</strong></td>
-        <td><p>2015-12-20 <span>11:45 </span>凤凰国际机场</p></td>
-        <td><p>2015-12-20 <span>14:25 </span>太平国际机场</p></td>
-        <td>（国航）HU7360</td>
-        <td>经济舱</td>
-      </tr>
+			
+     <!-- 航班信息 -->
+		 
     </table>
-        <table border="0" cellspacing="0" cellpadding="0" class="table font12  v-align-top bor-bottom-solid-1" >
+        <table id="orderInfo" border="0" cellspacing="0" cellpadding="0" class="table font12  v-align-top bor-bottom-solid-1" >
       <tr class="bg-gray-f5">
         <th>下单时间</th>
         <th>订单编号</th>
         <th>订单状态</th>
         <th class=" bg-gray-f5 text-right">结算总价</th>
         </tr>
-      <tr class="">
-        <td>16-01-15 09:19</td>
-        <td>1601151023024030101001106</td>
-        <td>已出票</td>
-        <td align="right" style="color:#ff0253; font-size:14px; font-weight:bold;">1234.00</td>
-      </tr>
+				
+				<!-- 订单信息 -->
       
     </table>
     <!--<h5 id="liebiao" class="mar-left-20" style="cursor:pointer; color:#337ab7;" align="right">退改签说明&nbsp;</h5>-->
@@ -233,48 +221,19 @@ $(document).ready(function() {
     <h3>政策备注</h3>
     <div class="lh25 pad-10 mar-bottom-20" style="background-color:#f4f2f2;">签转换开跨月改期收回代理费</div>
    
-    <h3>乘客信息<small class="mar-left-10">联系人：孙中山（13800005555）</small></h3>
-    <table border="0" cellspacing="0" cellpadding="0" class="table font12  v-align-top bor-bottom-solid-1" >
+    <h3>乘客信息<small class="mar-left-10" id="people"></small></h3>
+    <table id="peopleInfo" border="0" cellspacing="0" cellpadding="0" class="table font12  v-align-top bor-bottom-solid-1" >
       <tr class=" bg-gray-f5">
         <th>乘客姓名</th>
         <th>证件类型</th>
         <th>证件号码</th>
         <th>手机号码</th>
-        <th>票号</th>
+        <th>类型</th>
         <th>票面价</th>
         <th>机建燃油</th>
         <th class="text-right">结算价</th>
       </tr>
-      <tr class="">
-        <td>吴光团</td>
-        <td>身份证</td>
-        <td>350425197011110557</td>
-        <td>18381668542</td>
-        <td>0123456</td>
-        <td>850</td>
-        <td>50/0</td>
-        <td align="right" style="color:#ff0253; font-size:14px; font-weight:bold;">280.00</td>
-      </tr>
-      <tr class="">
-        <td>吴光团（儿）</td>
-        <td>身份证</td>
-        <td>350425197011110557</td>
-        <td>18381668542</td>
-        <td>0123456</td>
-        <td>850</td>
-        <td>50/0</td>
-        <td align="right" style="color:#ff0253; font-size:14px; font-weight:bold;">1200.00</td>
-      </tr>
-      <tr class="">
-        <td>吴光团（婴）</td>
-        <td>身份证</td>
-        <td>350425197011110557</td>
-        <td>18381668542</td>
-        <td>0123456</td>
-        <td>850</td>
-        <td>50/0</td>
-        <td align="right" style="color:#ff0253; font-size:14px; font-weight:bold;">1250.00</td>
-      </tr>
+     <!-- 乘客信息 -->
     </table>
     
 <h3>保险信息</h3>
@@ -365,6 +324,92 @@ $("#liebiao").click(
 });
 </script>
 
-
+<script>
+	function getQueryVariable(variable) {
+		let query = window.location.search.substring(1);
+		let vars = query.split("&");
+		for (let i = 0; i < vars.length; i++) {
+			let pair = vars[i].split("=");
+			if (pair[0] == variable) {
+				return pair[1];
+			}
+		}
+		return (false);
+	}
+	
+	$(function(){
+		var ticketId = getQueryVariable("ticketId");
+		if(ticketId == false){
+			window.location.href = "../index.html";
+		}
+     $.ajax({
+			 url:"../../api/searchOrder.action/ticketId/"+ticketId,
+			 type:"get",
+			 data:{},
+			 success:function(data){
+				 $("#flightInfo tbody").append('<tr class=""><td class="font16"><strong class="blue-0093dd">'+
+				 data.flightInfo.departure+'</strong> <span class="font12">至</span> <strong class="blue-0093dd">'+
+				 data.flightInfo.destination+'</strong></td><td><p>'+data.flightInfo.startTime+' 凤凰国际机场</p></td>'+
+        '<td><p>'+data.flightInfo.endTime+' 太平国际机场</p></td><td>（'+data.flightInfo.airline+'）'+data.flightInfo.flightNumber+
+				'</td><td>'+data.flightInfo.shippingSpace+'</td></tr>');
+				
+				$("#orderInfo tbody").append('<tr class=""><td>'+data.flightInfo.orderTime+'</td>'+
+        '<td>'+data.flightInfo.orderNumber+'</td><td>'+data.flightInfo.orderStatus+'</td>'+
+        '<td align="right" style="color:#ff0253; font-size:14px; font-weight:bold;">'+data.flightInfo.price+'</td></tr>');
+				
+				$("#people").text("联系人："+data.flightInfo.personName+"（"+data.flightInfo.personPhone+"）");
+				
+				$.each(data.flightInfo.flightPeoples,function(i,e){
+					$("#peopleInfo tbody").append('<tr class=""><td>'+e.realName+'</td>'+
+          '<td>身份证</td><td>'+e.idCard+'</td>'+
+          '<td>'+data.flightInfo.personPhone+'</td>'+
+          '<td>'+e.type+'</td>'+
+          '<td>'+e.price+'</td>'+
+          '<td>'+e.insurancePrice+'</td>'+
+          '<td align="right" style="color:#ff0253; font-size:14px; font-weight:bold;">'+(Number(e.price)+
+					Number(e.insurancePrice))+'</td></tr>');
+				});
+				
+			 },
+			 error:function(error){
+				 console.log(error);
+				 if(error.status==403){
+				 	window.location.href="../user/login.html";
+				 }
+			 }
+		 })
+	});
+	
+	/* 用户退出 */
+	function logout(){
+		$.ajax({
+			url: "../../api/logout.action",
+			type: "get",
+			data: {},
+			success: function(data) {
+				window.location.href="../index.html";
+			}
+		});
+	}
+	
+	/* 用户信息 */
+	var strcookie = document.cookie; //获取cookie字符串
+	var arrcookie = strcookie.split("; "); //分割
+	// 遍历匹配
+	for (var i = 0; i < arrcookie.length; i++) {
+		var arr = arrcookie[i].split("=");
+		if (arr[0] == "user") {
+			$(".userinfo").html("");
+			$(".userinfo").append(
+				'<li class="dropdown"><a href="javascript:;" class="dropdown-toggle"' +
+				'data-toggle="dropdown" role="button" aria-haspopup="true" ' +
+				'aria-expanded="false">您好，' + arr[1] + '<span class="caret"></span></a>' +
+				'<ul class="dropdown-menu">' +
+				'<li><a href="系统管理/修改密码.html">修改密码</a></li>\n' +
+				'<li><a href="javascript:;" onclick="logout()">退出</a></li>' +
+				'</ul></li>');
+		}
+	}
+</script>
 </body>
 </html>
