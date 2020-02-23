@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+		<title></title>
+
+		<link rel="stylesheet" type="text/css" href="css/chat.css">
+
+	</head>
+
+	<body>
+
+		<div class="qqBox">
+			<!-- xx -->
+			<div class="BoxHead">
+				<!-- <div class="headImg">
+			<img src="./index_files/6.jpg">
+		</div> -->
+				<div class="internetName"></div>
+				<div class="tubiao">
+					<!-- <span><img style="width: 20px; margin: 15px 5px;" src="iocn/xiao.png" alt=""></span>
+                <span><img style="width: 20px; margin: 15px 5px;" src="iocn/da.png" alt=""></span>
+                <span><img style="width: 20px; margin: 15px 5px;" src="iocn/iocnqx.png" alt=""></span> -->
+				</div>
+			</div>
+			<!-- 好友聊天类容 -->
+			<div class="context">
+
+				<div class="conLeft">
+					<div class="shouBox">
+						<div class="shous">
+							<div style="height: 60px;">
+								<img class="touimg" src="img/touxiang3.png" alt="">
+							</div>
+							<div class="txiangName"></div>
+							<div style="height: 52px;">
+								<img class="caidanImg" src="iocn/caidan.png" alt="">
+							</div>
+							<input type="hidden" id="fromId" />
+						</div>
+
+
+						<!-- 搜索 -->
+						
+						<!-- 菜单分组 -->
+						<div class="aui-flexView">
+
+							<div class="aui-scrollView">
+								<div class="aui-tab-box" data-ydui-tab>
+									<div class="tab-panel">
+										<!--消息-->
+										<div class="tab-panel-item tab-active">
+											<div class="tab-item">
+												<a href="javascript:;" class="aui-list-item">
+													<ul>
+														
+													</ul>
+
+												</a>
+
+											</div>
+										</div>
+
+									</div>
+
+								</div>
+							</div>
+						</div>
+
+
+					</div>
+
+				</div>
+				<div class="conRight">
+					<div class="Righthead">
+					</div>
+					<!-- 显示聊天内容 -->
+					<div class="RightCont">
+						<ul class="newsList">
+
+						</ul>
+					</div>
+					<div class="RightFoot">
+						<div class="emjon" style="display: none;">
+							<ul>
+								<li><img src="index_files/em_02.jpg"></li>
+								<li><img src="index_files/em_05.jpg"></li>
+								<li><img src="index_files/em_07.jpg"></li>
+								<li><img src="index_files/em_12.jpg"></li>
+								<li><img src="index_files/em_14.jpg"></li>
+								<li><img src="index_files/em_16.jpg"></li>
+								<li><img src="index_files/em_20.jpg"></li>
+								<li><img src="index_files/em_23.jpg"></li>
+								<li><img src="index_files/em_25.jpg"></li>
+								<li><img src="index_files/em_30.jpg"></li>
+								<li><img src="index_files/em_31.jpg"></li>
+								<li><img src="index_files/em_33.jpg"></li>
+								<li><img src="index_files/em_37.jpg"></li>
+								<li><img src="index_files/em_38.jpg"></li>
+								<li><img src="index_files/em_40.jpg"></li>
+								<li><img src="index_files/em_45.jpg"></li>
+								<li><img src="index_files/em_47.jpg"></li>
+								<li><img src="index_files/em_48.jpg"></li>
+								<li><img src="index_files/em_52.jpg"></li>
+								<li><img src="index_files/em_54.jpg"></li>
+								<li><img src="index_files/em_55.jpg"></li>
+							</ul>
+						</div>
+						<div class="footTop">
+							<ul>
+								<li class="ExP"><img src="index_files/20170926103645_33.jpg"></li>
+								<!-- <li><img src="index_files/20170926103645_39.jpg"></li>
+                            <li><img src="index_files/20170926103645_43.jpg"></li> -->
+							</ul>
+						</div>
+						<div class="inputBox">
+							<textarea id="dope" style="width: 99%;height: 75px; border: none;outline: none; resize:none;" name="" rows=""
+							 cols=""></textarea>
+							<button class="sendBtn">发送(s)</button>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="js/chat.js"></script>
+    
+		<script type="text/javascript">
+			function getNowFormatDate() {
+				var date = new Date();
+				var seperator1 = "-";
+				var seperator2 = ":";
+				var month = date.getMonth() + 1;
+				var strDate = date.getDate();
+				var hours = date.getHours();
+				var minutes = date.getMinutes();
+				var seconds = date.getSeconds();
+				if (month >= 1 && month <= 9) {
+					month = "0" + month;
+				}
+				if (strDate >= 0 && strDate <= 9) {
+					strDate = "0" + strDate;
+				}
+				if (hours >= 0 && hours <= 9) {
+					hours = "0" + hours;
+				}
+				if (minutes >= 0 && minutes <= 9) {
+					minutes = "0" + minutes;
+				}
+				if (seconds >= 0 && seconds <= 9) {
+					seconds = "0" + seconds;
+				}
+				var currentdate = date.getFullYear() + seperator1 + month + seperator1
+						+ strDate + " " + hours + seperator2 + minutes + seperator2
+						+ seconds;
+				return currentdate;
+			}
+			
+			$(function(){
+				
+				$.ajax({
+					url:"../../api/getSessionUser",
+					type:"get",
+					data:{},
+					success:function(data){
+						$('.txiangName').text(data.userName);
+						$("#fromId").val(data.id);
+					}
+				})
+				
+			});
+			
+			var websocket;
+			
+			$(function() {
+				
+				//webSocket连接
+				socketLink();
+				
+				$(window).keyup(function(event) {
+					if (event.keyCode == 13) {
+						$(".sendBtn").click();
+						return true;
+					}
+				});
+				
+				
+				$('.sendBtn').on('click',function(){
+							var id = $(".tab-panel .bg input[name='userId']").val();
+							var msg = $("#dope").val();
+							var nickname = $('.txiangName').text();
+							if(msg==''){
+								return;
+							}
+							$('#dope').val('');
+							var obj = new Object();
+							obj.toId = id;
+							obj.fromId = $("#fromId").val();
+							obj.content = msg;
+							obj.userName = nickname;
+							var json = JSON.stringify(obj);
+							var result = websocket.send(json);
+							
+							var str='';
+							str+='<li>'+
+							        "<div class='msgContent right title'>" + nickname+
+							        " (" + getNowFormatDate() + ")</div><div class='clean'></div>"+
+											'<div class="nesHead"><img src="img/6.jpg"/></div>'+
+											'<div class="news"><img class="jiao" src="img/you.jpg">'+msg+'</div>'+
+									'</li>';
+							$('.newsList').append(str);
+							//setTimeout(answers,1000); 
+							$('.conLeft').find('li.bg').children('.liRight').children('.infor').text(msg);
+							$('.RightCont').scrollTop($('.RightCont')[0].scrollHeight );
+						});
+							
+			});
+			
+			function socketLink(){
+				
+				if ('WebSocket' in window) {
+				} else {
+					alert("您的浏览器版本太低，请升级浏览器版本！");
+					return;
+				}
+				if ('WebSocket' in window) {
+					var wsUrl = "ws://localhost:8080/websocket";
+					websocket = new WebSocket(wsUrl); //连接发生错误的回调方法		     
+					websocket.onerror = function() {
+						console.log(" websocket.onerror :error");
+					};
+					//连接成功建立的回调方法		     
+					websocket.onopen = function(event) {
+						console.log(" websocket connet success");
+					}
+					//接收到消息的回调方法		     
+					websocket.onmessage = function(event) {
+						message = eval('(' + event.data + ')');
+						
+						var flag = 0;
+						$(".tab-panel ul li input[name='userId']").each(function(i,e){
+							if($(e).val()==message.fromId){
+								flag = i+1;
+							}
+						});
+						
+						if(message.content=="客服上线"){
+							if(flag == 0){
+								$(".tab-panel ul").append('<li class="bg">'+
+								'<div class="liLeft"><img src="index_files/20170926103645_19.jpg"></div>'+
+								'<div class="liRight"><span class="intername">'+message.userName+'</span>'+
+								'<span class="infor">'+message.content+'</span><input type="hidden" '+
+								'name="userId" value="'+message.fromId+'"></div></li>');
+								$('.internetName').text(message.userName);
+							}	
+						}else{
+							if(flag!=0){
+								var li = $(".tab-panel ul li").eq(flag-1);
+                if(li.attr("class")=='bg'){
+									var str='';
+									str+='<li>'+
+													"<div class='msgContent left title'>" + message.userName+
+													" (" + getNowFormatDate() + ")</div><div class='clean'></div>"+
+													'<div class="answerHead"><img src="index_files/20170926103645_04.jpg"/></div>'+
+													'<div class="answers"><img class="jiao" src="img/you.jpg">'+message.content+'</div>'+
+											'</li>';
+									$('.newsList').append(str);
+								}else{
+									li.find(".infor").text(message.content);
+								}
+								
+							}else{
+								$(".tab-panel ul").append('<li>'+
+								'<div class="liLeft"><img src="index_files/20170926103645_04.jpg"></div>'+
+								'<div class="liRight"><span class="intername">'+message.userName+'</span>'+
+								'<span class="infor">'+message.content+'</span><input type="hidden" '+
+								'name="userId" value="'+message.fromId+'"></div></li>');
+								$('.internetName').text(message.userName);
+								
+								var str='';
+								str+='<li>'+
+												"<div class='msgContent left title'>" + message.userName+
+												" (" + getNowFormatDate() + ")</div><div class='clean'></div>"+
+												'<div class="answerHead"><img src="index_files/20170926103645_04.jpg"/></div>'+
+												'<div class="answers"><img class="jiao" src="img/you.jpg">'+message.content+'</div>'+
+										'</li>';
+								$('.newsList').append(str);
+							}
+							
+						}
+					}
+					//连接关闭的回调方法		     
+					websocket.onclose = function() {
+						console.log(" websocket.onclose :close ");
+						websocket = new WebSocket(wsUrl);
+					}
+					//监听窗口关闭事件，当窗口关闭时，主动去关闭websocket连接，防止连接还没断开就关闭窗口，server端会抛异常。		    
+					window.onbeforeunload = function() {
+						websocket.close();
+					}
+				}
+			}
+			
+			$('.conLeft').on('click',"ul li",function(){
+					$(this).addClass('bg').siblings().removeClass('bg');
+					var intername=$(this).children('.liRight').children('.intername').text();
+					$('.internetName').text(intername);
+					$('.newsList').html('');
+			});	
+			
+		</script>
+
+	</body>
+
+</html>
