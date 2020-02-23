@@ -16,6 +16,7 @@
 
 		<!-- IconFont图标 -->
 		<link href="css/iconfont.css" rel="stylesheet">
+		<link href="chat/css/chat.css" rel="stylesheet">
 		<script type="text/javascript" src="js/jquery-1.9.1.min.js"></script>
 		<script src="js/bootstrap.min.js"></script>
 
@@ -343,6 +344,45 @@
 		</div>
 		<!-- 列表结束 -->
 
+		<!-- 在线客服 -->
+		<div class="suspend">
+			<dl>
+				<dt class="IE6PNG"></dt>
+				<dd class="suspendQQ"> <a href="javascript:void(0);" onclick="chat()"></a></dd>
+				<dd class="suspendTel"><a href="javascript:void(0);"></a></dd>
+			</dl>
+		</div>
+		<script type="text/javascript">
+			$(document).ready(function() {
+
+				$(".suspend").mouseover(function() {
+					$(this).stop();
+					$(this).animate({
+						width: 160
+					}, 400);
+				})
+
+				$(".suspend").mouseout(function() {
+					$(this).stop();
+					$(this).animate({
+						width: 40
+					}, 400);
+				});
+
+			});
+
+			function chat() {
+				layer.open({
+					type: 2,
+					title: '',
+					area: ['83%', '94%'],
+					fix: true, //不固定
+					maxmin: false,
+					content: 'chat/index.html',
+				});
+			}
+		</script>
+
 		<script type="text/javascript">
 			function dateFormat(fmt, dateString) {
 				var date = new Date(dateString);
@@ -409,7 +449,7 @@
 					}
 				});
 			}
-			
+
 			function getCookie() {
 				var strcookie = document.cookie; //获取cookie字符串
 				var arrcookie = strcookie.split("; "); //分割
@@ -424,35 +464,34 @@
 			}
 
 			function subscribe(number, flightId, cabinId) {
-				if(getCookie()!=""){
+				if (getCookie() != "") {
 					if (number > 0) {
 						window.location.href = 'subscribe/subscribe.html?flightId=' + flightId + '&cabinId=' + cabinId;
 					} else {
 						alert("无票");
 					}
-				}else{
-					window.location.href="user/login.html";
+				} else {
+					window.location.href = "user/login.html";
 				}
-				
+
 			}
 		</script>
 
 		<script>
-			
 			/* 用户退出 */
-			function logout(){
+			function logout() {
 				$.ajax({
 					url: "../api/logout.action",
 					type: "get",
 					data: {},
 					success: function(data) {
-						window.location.href="../flight/index.html";
+						window.location.href = "../flight/index.html";
 					}
 				});
 			}
 			$(function() {
 				/* 获取用户名*/
-				if(getCookie()!=""){
+				if (getCookie() != "") {
 					$(".userinfo").html("");
 					$(".userinfo").append(
 						'<li class="dropdown"><a href="javascript:;" class="dropdown-toggle"' +
@@ -463,7 +502,7 @@
 						'<li><a href="javascript:;" onclick="logout()">退出</a></li>' +
 						'</ul></li>');
 				}
-				
+
 				/*获取当天票*/
 				$.ajax({
 					url: "../api/getFlighInfo.action",
@@ -492,7 +531,8 @@
 									'<li class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥' + f.adultPrice +
 									'</strong>' +
 									' <span class="gray font12">1.9折</span></li><li class="pull-right "><button type="button"' +
-									'class="btn btn-danger btn-sm" onclick="subscribe('+f.seatNumber+','+e.id+','+f.id+')">订票</button></li></ul>');
+									'class="btn btn-danger btn-sm" onclick="subscribe(' + f.seatNumber + ',' + e.id + ',' + f.id +
+									')">订票</button></li></ul>');
 							});
 						});
 						$(".shippingSpace").each(function(i, e) {
@@ -535,11 +575,11 @@
 				});
 
 			});
-			
+
 			//订票
-		/* 	$(".hangbanlist").on("click", ".collapse li:last-child button", function() {
-				alert(1);
-			}); */
+			/* 	$(".hangbanlist").on("click", ".collapse li:last-child button", function() {
+					alert(1);
+				}); */
 
 			$("#week").on("click", "li", function() {
 				$("#week li").each(function(i, e) {
@@ -578,7 +618,8 @@
 									'<li class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥' + f.adultPrice +
 									'</strong>' +
 									' <span class="gray font12">1.9折</span></li><li class="pull-right "><button type="button"' +
-									'class="btn btn-danger btn-sm" onclick="subscribe('+f.seatNumber+','+e.id+','+f.id+')">订票</button></li></ul>');
+									'class="btn btn-danger btn-sm" onclick="subscribe(' + f.seatNumber + ',' + e.id + ',' + f.id +
+									')">订票</button></li></ul>');
 							});
 						});
 
@@ -600,7 +641,7 @@
 			});
 
 			function searchLine() {
-				
+
 				$.ajax({
 					url: "../api/serachList.action",
 					type: "get",
@@ -629,7 +670,8 @@
 									'<li class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥' + f.adultPrice +
 									'</strong>' +
 									' <span class="gray font12">1.9折</span></li><li class="pull-right "><button type="button"' +
-									'class="btn btn-danger btn-sm" onclick="subscribe('+f.seatNumber+','+e.id+','+f.id+')">订票</button></li></ul>');
+									'class="btn btn-danger btn-sm" onclick="subscribe(' + f.seatNumber + ',' + e.id + ',' + f.id +
+									')">订票</button></li></ul>');
 							});
 						});
 
