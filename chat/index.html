@@ -39,11 +39,12 @@
 								<img class="caidanImg" src="iocn/caidan.png" alt="">
 							</div>
 							<input type="hidden" id="fromId" />
+							<input type="hidden" id="status" />
 						</div>
 
 
 						<!-- 搜索 -->
-						
+
 						<!-- 菜单分组 -->
 						<div class="aui-flexView">
 
@@ -55,7 +56,7 @@
 											<div class="tab-item">
 												<a href="javascript:;" class="aui-list-item">
 													<ul>
-														
+
 													</ul>
 
 												</a>
@@ -127,7 +128,7 @@
 
 		<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="js/chat.js"></script>
-    
+
 		<script type="text/javascript">
 			function getNowFormatDate() {
 				var date = new Date();
@@ -153,76 +154,93 @@
 				if (seconds >= 0 && seconds <= 9) {
 					seconds = "0" + seconds;
 				}
-				var currentdate = date.getFullYear() + seperator1 + month + seperator1
-						+ strDate + " " + hours + seperator2 + minutes + seperator2
-						+ seconds;
+				var currentdate = date.getFullYear() + seperator1 + month + seperator1 +
+					strDate + " " + hours + seperator2 + minutes + seperator2 +
+					seconds;
 				return currentdate;
 			}
-			
-			$(function(){
-				
+
+			$(function() {
+
 				$.ajax({
-					url:"../../api/getSessionUser",
-					type:"get",
-					data:{},
-					success:function(data){
-						$('.txiangName').text(data.userName);
+					url: "../../api/getSessionUser",
+					type: "get",
+					data: {},
+					success: function(data) {
+						$('.txiangName').text(data.name);
 						$("#fromId").val(data.id);
+						$("#status").val(data.status);
+						
+						if(data.status == 1){
+							$(".touimg").attr("src","index_files/20170926103645_54.jpg");
+						}else{
+							$(".touimg").attr("src","index_files/20170926103645_04.jpg");
+						}
 					}
 				})
-				
+
 			});
-			
+
 			var websocket;
-			
+			var msgRecord = {}
+
 			$(function() {
-				
+
 				//webSocket连接
 				socketLink();
-				
+
 				$(window).keyup(function(event) {
 					if (event.keyCode == 13) {
 						$(".sendBtn").click();
 						return true;
 					}
 				});
-				
-				
-				$('.sendBtn').on('click',function(){
-							var id = $(".tab-panel .bg input[name='userId']").val();
-							var msg = $("#dope").val();
-							var nickname = $('.txiangName').text();
-							if(msg==''){
-								return;
-							}
-							$('#dope').val('');
-							var obj = new Object();
-							obj.toId = id;
-							obj.fromId = $("#fromId").val();
-							obj.content = msg;
-							obj.userName = nickname;
-							var json = JSON.stringify(obj);
-							var result = websocket.send(json);
-							
-							var str='';
-							str+='<li>'+
-							        "<div class='msgContent right title'>" + nickname+
-							        " (" + getNowFormatDate() + ")</div><div class='clean'></div>"+
-											'<div class="nesHead"><img src="img/6.jpg"/></div>'+
-											'<div class="news"><img class="jiao" src="img/you.jpg">'+msg+'</div>'+
-									'</li>';
-							$('.newsList').append(str);
-							//setTimeout(answers,1000); 
-							$('.conLeft').find('li.bg').children('.liRight').children('.infor').text(msg);
-							$('.RightCont').scrollTop($('.RightCont')[0].scrollHeight );
-						});
-							
+
+
+				$('.sendBtn').on('click', function() {
+					var id = $(".tab-panel .bg input[name='userId']").val();
+					var msg = $("#dope").val();
+					var nickname = $('.txiangName').text();
+					if (msg == '') {
+						return;
+					}
+					$('#dope').val('');
+					var obj = new Object();
+					obj.toId = id;
+					obj.fromId = $("#fromId").val();
+					obj.content = msg;
+					obj.userName = nickname;
+					obj.status = $("#status").val();
+					var json = JSON.stringify(obj);
+					var result = websocket.send(json);
+					
+				    //记录消息
+					obj.nowDate = getNowFormatDate();
+					if(obj.status == 1){
+						obj.imgUrl = "index_files/20170926103645_54.jpg";
+					}else{
+						obj.imgUrl = "index_files/20170926103645_04.jpg";
+					}
+					addRecord(id,obj);
+                    
+					var str = '';
+					str += '<li>' +
+						"<div class='msgContent right title'>" + nickname +
+						" (" + obj.nowDate + ")</div><div class='clean'></div>" +
+						'<div class="nesHead"><img src="'+obj.imgUrl+'"/></div>' +
+						'<div class="news"><img class="jiao" src="img/you.jpg">' + msg + '</div>' +
+						'</li>';
+					$('.newsList').append(str);
+					//setTimeout(answers,1000); 
+					$('.conLeft').find('li.bg').children('.liRight').children('.infor').text(msg);
+					$('.RightCont').scrollTop($('.RightCont')[0].scrollHeight);
+				});
+
 			});
-			
-			function socketLink(){
-				
-				if ('WebSocket' in window) {
-				} else {
+
+			function socketLink() {
+
+				if ('WebSocket' in window) {} else {
 					alert("您的浏览器版本太低，请升级浏览器版本！");
 					return;
 				}
@@ -240,56 +258,66 @@
 					websocket.onmessage = function(event) {
 						message = eval('(' + event.data + ')');
 						
+						if(message.status == 1){
+							message.imgUrl = "index_files/20170926103645_54.jpg";
+						}else{
+							message.imgUrl = "index_files/20170926103645_04.jpg";
+						}
+						message.nowDate = getNowFormatDate();
+						
+						//记录消息
+						addRecord(message.fromId,message);
+						
 						var flag = 0;
-						$(".tab-panel ul li input[name='userId']").each(function(i,e){
-							if($(e).val()==message.fromId){
-								flag = i+1;
+						$(".tab-panel ul li input[name='userId']").each(function(i, e) {
+							if ($(e).val() == message.fromId) {
+								flag = i + 1;
 							}
 						});
-						
-						if(message.content=="客服上线"){
-							if(flag == 0){
-								$(".tab-panel ul").append('<li class="bg">'+
-								'<div class="liLeft"><img src="index_files/20170926103645_19.jpg"></div>'+
-								'<div class="liRight"><span class="intername">'+message.userName+'</span>'+
-								'<span class="infor">'+message.content+'</span><input type="hidden" '+
-								'name="userId" value="'+message.fromId+'"></div></li>');
+
+						if (message.content == "客服上线") {
+							if (flag == 0) {
+								$(".tab-panel ul").append('<li class="bg">' +
+									'<div class="liLeft"><img src="'+message.imgUrl+'"></div>' +
+									'<div class="liRight"><span class="intername">' + message.userName + '</span>' +
+									'<span class="infor">' + message.content + '</span><input type="hidden" ' +
+									'name="userId" value="' + message.fromId + '"></div></li>');
 								$('.internetName').text(message.userName);
-							}	
-						}else{
-							if(flag!=0){
-								var li = $(".tab-panel ul li").eq(flag-1);
-                if(li.attr("class")=='bg'){
-									var str='';
-									str+='<li>'+
-													"<div class='msgContent left title'>" + message.userName+
-													" (" + getNowFormatDate() + ")</div><div class='clean'></div>"+
-													'<div class="answerHead"><img src="index_files/20170926103645_04.jpg"/></div>'+
-													'<div class="answers"><img class="jiao" src="img/you.jpg">'+message.content+'</div>'+
-											'</li>';
+							}
+						} else {
+							if (flag != 0) {
+								var li = $(".tab-panel ul li").eq(flag - 1);
+								if (li.attr("class") == 'bg') {
+									var str = '';
+									str += '<li>' +
+										"<div class='msgContent left title'>" + message.userName +
+										" (" + message.nowDate + ")</div><div class='clean'></div>" +
+										'<div class="answerHead"><img src="'+message.imgUrl+'"/></div>' +
+										'<div class="answers"><img class="jiao" src="img/you.jpg">' + message.content + '</div>' +
+										'</li>';
 									$('.newsList').append(str);
-								}else{
+								} else {
 									li.find(".infor").text(message.content);
 								}
-								
-							}else{
-								$(".tab-panel ul").append('<li>'+
-								'<div class="liLeft"><img src="index_files/20170926103645_04.jpg"></div>'+
-								'<div class="liRight"><span class="intername">'+message.userName+'</span>'+
-								'<span class="infor">'+message.content+'</span><input type="hidden" '+
-								'name="userId" value="'+message.fromId+'"></div></li>');
+
+							} else {
+								$(".tab-panel ul").append('<li>' +
+									'<div class="liLeft"><img src="'+message.imgUrl+'"></div>' +
+									'<div class="liRight"><span class="intername">' + message.userName + '</span>' +
+									'<span class="infor">' + message.content + '</span><input type="hidden" ' +
+									'name="userId" value="' + message.fromId + '"></div></li>');
 								$('.internetName').text(message.userName);
-								
-								var str='';
-								str+='<li>'+
-												"<div class='msgContent left title'>" + message.userName+
-												" (" + getNowFormatDate() + ")</div><div class='clean'></div>"+
-												'<div class="answerHead"><img src="index_files/20170926103645_04.jpg"/></div>'+
-												'<div class="answers"><img class="jiao" src="img/you.jpg">'+message.content+'</div>'+
-										'</li>';
+
+								var str = '';
+								str += '<li>' +
+									"<div class='msgContent left title'>" + message.userName +
+									" (" + message.nowDate + ")</div><div class='clean'></div>" +
+									'<div class="answerHead"><img src="'+message.imgUrl+'"/></div>' +
+									'<div class="answers"><img class="jiao" src="img/you.jpg">' + message.content + '</div>' +
+									'</li>';
 								$('.newsList').append(str);
 							}
-							
+
 						}
 					}
 					//连接关闭的回调方法		     
@@ -303,14 +331,55 @@
 					}
 				}
 			}
+
+			$('.conLeft').on('click', "ul li", function() {
+				$(this).addClass('bg').siblings().removeClass('bg');
+				var intername = $(this).children('.liRight').children('.intername').text();
+				$('.internetName').text(intername);
+				
+				var id = $(".tab-panel .bg input[name='userId']").val();
+				getRecord(id);
+			});
 			
-			$('.conLeft').on('click',"ul li",function(){
-					$(this).addClass('bg').siblings().removeClass('bg');
-					var intername=$(this).children('.liRight').children('.intername').text();
-					$('.internetName').text(intername);
+			function addRecord(name,obj){
+				if(msgRecord[name] != undefined){
+					msgRecord[name].push(obj);
+				}else{
+					msgRecord[name] = [];
+					msgRecord[name].push(obj);
+				}
+			}
+			
+			function getRecord(name){
+				console.log(msgRecord);
+				if(msgRecord[name] != undefined){
 					$('.newsList').html('');
-			});	
-			
+					$.each(msgRecord[name],function(i,e){
+						
+						if(e.fromId == $("#fromId").val()+""){
+                            
+							var str = '<li>' +
+								"<div class='msgContent right title'>" + e.userName +
+								" (" + e.nowDate + ")</div><div class='clean'></div>" +
+								'<div class="nesHead"><img src="'+e.imgUrl+'"/></div>' +
+								'<div class="news"><img class="jiao" src="img/you.jpg">' + e.content + '</div>' +
+								'</li>';
+							$('.newsList').append(str);
+						}else{
+							var str = '<li>' +
+								"<div class='msgContent left title'>" + e.userName +
+								" (" + e.nowDate + ")</div><div class='clean'></div>" +
+								'<div class="answerHead"><img src="'+e.imgUrl+'"/></div>' +
+								'<div class="answers"><img class="jiao" src="img/you.jpg">' + e.content + '</div>' +
+								'</li>';
+							$('.newsList').append(str);
+						}
+					});
+					
+				}else{
+					$('.newsList').html('');
+				}
+			}
 		</script>
 
 	</body>

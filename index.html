@@ -417,7 +417,7 @@
 			function weekLeft() {
 				var name = $("#week li:first-child a").attr("name");
 				$.ajax({
-					url: "../api/serachByWeek.action/" + name,
+					url: "../api/searchByWeek.action/" + name,
 					type: "get",
 					dataType: "json",
 					data: {},
@@ -435,7 +435,7 @@
 			function weekRight() {
 				var name = $("#week li:last-child a").attr("name");
 				$.ajax({
-					url: "../api/serachByWeek.action/" + name,
+					url: "../api/searchByWeek.action/" + name,
 					type: "get",
 					dataType: "json",
 					data: {},
@@ -491,7 +491,22 @@
 			}
 			$(function() {
 				/* 获取用户名*/
-				if (getCookie() != "") {
+				$.ajax({
+					url: "../api/getUserName.form",
+					type: "get",
+					success: function(data) {
+							$(".userinfo").html("");
+							$(".userinfo").append(
+								'<li class="dropdown"><a href="javascript:;" class="dropdown-toggle"' +
+								'data-toggle="dropdown" role="button" aria-haspopup="true" ' +
+								'aria-expanded="false">您好，' + data + '<span class="caret"></span></a>' +
+								'<ul class="dropdown-menu">' +
+								'<li><a href="系统管理/修改密码.html">修改密码</a></li>\n' +
+								'<li><a href="javascript:;" onclick="logout()">退出</a></li>' +
+								'</ul></li>');
+					}
+				});
+				/* if (getCookie() != "") {
 					$(".userinfo").html("");
 					$(".userinfo").append(
 						'<li class="dropdown"><a href="javascript:;" class="dropdown-toggle"' +
@@ -501,11 +516,11 @@
 						'<li><a href="系统管理/修改密码.html">修改密码</a></li>\n' +
 						'<li><a href="javascript:;" onclick="logout()">退出</a></li>' +
 						'</ul></li>');
-				}
+				} */
 
 				/*获取当天票*/
 				$.ajax({
-					url: "../api/getFlighInfo.action",
+					url: "../api/getFlightInfo.action",
 					type: "post",
 					dataType: "json",
 					data: {},
@@ -591,7 +606,7 @@
 			$("#week").on("click", "a", function() {
 				var name = $(this).attr("name");
 				$.ajax({
-					url: "../api/serachByWeek.action/" + name,
+					url: "../api/searchByWeek.action/" + name,
 					type: "get",
 					dataType: "json",
 					data: {},
@@ -643,7 +658,7 @@
 			function searchLine() {
 
 				$.ajax({
-					url: "../api/serachList.action",
+					url: "../api/searchList.action",
 					type: "get",
 					dataType: "json",
 					data: $("#serachForm").serialize(),
