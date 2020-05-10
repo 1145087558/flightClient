@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>后台登录-X-admin1.1</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="./css/font.css">
+		<link rel="stylesheet" href="./css/xadmin.css">
+		<link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+		<script src="./lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="./js/xadmin.js"></script>
+
+	</head>
+	<body>
+		<!-- 中部开始 -->
+		<div class="wrapper">
+			<!-- 右侧主体开始 -->
+			<div class="page-content">
+				<div class="content">
+					<!-- 右侧内容框架，更改从这里开始 -->
+					<form class="layui-form" action="../../api/manage/addFlightCabin.form" method="post">
+						<div class="layui-form-item">
+							<label for="L_email" class="layui-form-label">
+								船舱号
+							</label>
+							<div class="layui-input-inline">
+								<input type="text" id="shippingSpace" name="shippingSpace" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label for="L_tel" class="layui-form-label">
+								成年人价格
+							</label>
+							<div class="layui-input-inline">
+								<input type="text" id="adultPrice" name="adultPrice" required lay-verify="required" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label for="L_city" class="layui-form-label">
+								儿童价格
+							</label>
+							<div class="layui-input-inline">
+								<input type="text" id="childrenPrice" name="childrenPrice" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label for="L_city" class="layui-form-label">
+								婴儿价格
+							</label>
+							<div class="layui-input-inline">
+								<input type="text" id="infantPrice" name="infantPrice" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label for="L_city" class="layui-form-label">
+								保险价格
+							</label>
+							<div class="layui-input-inline">
+								<input type="text" id="insurancePrice" name="insurancePrice" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label for="L_city" class="layui-form-label">
+								折扣
+							</label>
+							<div class="layui-input-inline">
+								<input type="text" id="discount" name="discount" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label for="L_city" class="layui-form-label">
+								座位数量
+							</label>
+							<div class="layui-input-inline">
+								<input type="text" id="seatNumber" name="seatNumber" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<input type="hidden" name="flightId" />
+						
+						<div class="layui-form-item">
+							<label for="L_sign" class="layui-form-label">
+							</label>
+							<!-- <button class="layui-btn" key="set-mine" lay-filter="save" lay-submit onclick="save()">
+								保存
+							</button> -->
+							<input type="submit"  class="layui-btn" />
+						</div>
+					</form>
+					<!-- 右侧内容框架，更改从这里结束 -->
+				</div>
+			</div>
+			<!-- 右侧主体结束 -->
+		</div>
+		<!-- 中部结束 -->
+		<script>
+			function getQueryVariable(variable) {
+				let query = window.location.search.substring(1);
+				let vars = query.split("&");
+				for (let i = 0; i < vars.length; i++) {
+					let pair = vars[i].split("=");
+					if (pair[0] == variable) {
+						return pair[1];
+					}
+				}
+				return (false);
+			}
+			
+			$(function(){
+				$(".layui-form").find("input[name='flightId']").val(getQueryVariable("flightId"));
+			})
+			
+			$(".layui-form").submit(function() {
+				layer.msg("修改成功");
+				parent.location.reload();
+				return true;
+			});
+		</script>
+	</body>
+</html>

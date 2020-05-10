@@ -1,0 +1,227 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>后台登录-X-admin1.1</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="./css/font.css">
+		<link rel="stylesheet" href="./css/xadmin.css">
+		<link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+		<script type="text/javascript" src="./js/laydate/laydate.js"></script>
+		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+		<script src="./lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="./js/xadmin.js"></script>
+		
+
+	</head>
+	<body>
+		<!-- 中部开始 -->
+		<div class="wrapper">
+			<!-- 右侧主体开始 -->
+			<div class="page-content">
+				<div class="content">
+					<!-- 右侧内容框架，更改从这里开始 -->
+					<form class="layui-form" action="../../api/manage/updateFlightData.form" method="post">
+						<div class="layui-form-item">
+							<label for="L_email" class="layui-form-label">
+								ID
+							</label>
+							<div class="layui-input-inline">
+								<input type="text" id="id" name="id" autocomplete="off" class="layui-input" readonly="readonly">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label for="L_tel" class="layui-form-label">
+								出发日期
+							</label>
+							<div class="layui-input-inline">
+								<input type="text" id="dayTime" name="dayTime" required lay-verify="required" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label for="L_tel" class="layui-form-label">
+								出发时间
+							</label>
+							<div class="layui-input-inline">
+								<input type="text" id="startTime" name="startTime" required lay-verify="required" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label for="L_tel" class="layui-form-label">
+								到达时间
+							</label>
+							<div class="layui-input-inline">
+								<input type="text" id="endTime" name="endTime" required lay-verify="required" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label for="L_city" class="layui-form-label">
+								出发地
+							</label>
+							<div class="layui-input-inline">
+								<input type="text" id="departure" name="departure" required lay-verify="required" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label for="L_city" class="layui-form-label">
+								目的地
+							</label>
+							<div class="layui-input-inline">
+								<input type="text" id="destination" name="destination" required lay-verify="required" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						
+						<div class="layui-form-item">
+							<label for="L_sign" class="layui-form-label">
+							</label>
+							<!-- <button class="layui-btn" key="set-mine" lay-filter="save" lay-submit onclick="save()">
+								保存
+							</button> -->
+							<input type="submit" class="layui-btn" />
+						</div>
+					</form>
+					<!-- 右侧内容框架，更改从这里结束 -->
+				</div>
+			</div>
+			<!-- 右侧主体结束 -->
+		</div>
+		<!-- 中部结束 -->
+		<script>
+			function getQueryVariable(variable) {
+				let query = window.location.search.substring(1);
+				let vars = query.split("&");
+				for (let i = 0; i < vars.length; i++) {
+					let pair = vars[i].split("=");
+					if (pair[0] == variable) {
+						return pair[1];
+					}
+				}
+				return (false);
+			}
+
+			$(function() {
+				$.ajax({
+					url: "../../api/manage/getFlightData.form/flightId/" + getQueryVariable("flightId"),
+					type: "get",
+					success: function(data) {
+						var obj = $(".layui-form");
+						obj.find("input[name='dayTime']").val(data.dayTime);
+						obj.find("input[name='startTime']").val(data.startTime);
+						obj.find("input[name='endTime']").val(data.endTime);
+						obj.find("input[name='departure']").val(data.departure);
+						obj.find("input[name='destination']").val(data.destination);
+						obj.find("input[name='id']").val(data.id);
+					},
+					error: function(error) {
+						console.log(error);
+						if (error.status == 403) {
+							window.location.href = "login.html";
+						}
+					}
+				});
+			})
+
+			$(".layui-form").submit(function() {
+				layer.msg("修改成功");
+				parent.location.reload();
+				return true;
+			});
+		</script>
+		
+		<script>
+			
+			laydate.render({
+				elem: '#dayTime',
+				trigger: 'click',
+				type: 'date',
+				btns: ['confirm'],
+				min: minDate()
+			});
+			
+			var editStart = laydate.render({
+				elem: '#startTime',
+				trigger: 'click',
+				type: 'datetime',
+				btns: ['confirm'],
+				min: minDate(),
+				done: function(value, date) {
+					editEnd.config.min = {
+						year: date.year,
+						month: date.month - 1,
+						date: date.date,
+						hours: date.hours,
+						minutes: date.minutes,
+						seconds: date.seconds + 1
+					};
+					if (date.seconds == 59) {
+						editEnd.config.min.minutes = date.minutes + 1;
+						editEnd.config.min.seconds = 0;
+					}
+					if (date.seconds == 59 && date.minutes == 59) {
+						editEnd.config.min.hours = date.hours + 1;
+						editEnd.config.min.minutes = 0;
+						editEnd.config.min.seconds = 0;
+					}
+					if (date.seconds == 59 && date.minutes == 59 && date.hours == 23) {
+						editEnd.config.min.date = date.date + 1;
+						editEnd.config.min.hours = 0;
+						editEnd.config.min.minutes = 0;
+						editEnd.config.min.seconds = 0;
+					}
+				}
+			});
+			var editEnd = laydate.render({
+				elem: '#endTime',
+				trigger: 'click',
+				type: 'datetime',
+				btns: ['confirm'],
+				done: function(value, date) {
+					editStart.config.max = {
+						year: date.year,
+						month: date.month - 1,
+						date: date.date,
+						hours: date.hours,
+						minutes: date.minutes,
+						seconds: date.seconds - 1
+					}
+					if (date.seconds == 0) {
+						editStart.config.max.minutes = date.minutes - 1;
+						editStart.config.max.seconds = 59;
+					}
+					if (date.seconds == 0 && date.minutes == 0) {
+						editStart.config.max.hours = date.hours - 1;
+						editStart.config.max.minutes = 59;
+						editStart.config.max.seconds = 59;
+					}
+					if (date.seconds == 0 && date.minutes == 0 && date.hours == 0) {
+						editStart.config.max.date = date.date - 1;
+						editStart.config.max.hours = 23;
+						editStart.config.max.minutes = 59;
+						editStart.config.max.seconds = 59;
+					}
+				}
+			});
+
+			function minDate() {
+				var now = new Date();
+				var mindate = now.getFullYear() + "-" + (now.getMonth() + 1) + "-" +
+					now.getDate() + " " + now.getHours() + ":" + now.getMinutes() +
+					":" + now.getSeconds();
+				return mindate;
+			}
+
+			function getDateArray(date) {
+				var formatDate = {};
+				formatDate.year = date.year;
+				formatDate.month = date.month - 1;
+				formatDate.date = date.date;
+				formatDate.date = date.hours;
+				formatDate.minutes = date.minutes,
+					formatDate.seconds = date.seconds + 1;
+				return formatDate;
+			}
+		</script>
+	</body>
+</html>

@@ -17,6 +17,7 @@
 		<link href="../css/iconfont.css" rel="stylesheet">
 		<script type="text/javascript" src="../js/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="../js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="../js/My97DatePicker/WdatePicker.js"></script>
 		<!-- 兼容IE8 -->
 		<!--[if lte IE 9]>
 <script type="text/javascript" src="../../js/html5shiv.min.js"></script>
@@ -309,7 +310,7 @@
 		<div id="gaiqian" style="display:none">
 			<div class="modal-body">
 				<form class="form-horizontal">
-					<div class="form-group">
+					<!-- <div class="form-group">
 						<label for="" class="col-sm-4 control-label">改签乘机人：</label>
 						<div class="col-sm-6">
 							<label class="checkbox-inline" style=" margin-left:10px;">
@@ -328,25 +329,25 @@
 								<input type="checkbox" id="inlineCheckbox1" value="option1"> 王博玉
 							</label>
 						</div>
-					</div>
+					</div> -->
 
 					<div class="form-group">
 						<label for="" class="col-sm-4 control-label">期望日期：</label>
 						<div class="col-sm-6">
-							<input type="text" class="form-control" id="" placeholder="请选择日期" onClick="WdatePicker()">
+							<input type="text" name="dayTime" class="form-control" id="" placeholder="请选择日期" onClick="WdatePicker()">
 						</div>
 					</div>
 
 					<div class="form-group">
 						<label for="" class="col-sm-4 control-label">期望时间：</label>
 						<div class="col-sm-6">
-							<select name="select" class="form-control ">
-								<option value="">不限</option>
-								<option value="">上午</option>
-								<option value="">中午</option>
-								<option value="">下午</option>
-								<option value="">晚上</option>
-								<option value="">凌晨</option>
+							<select name="startTime" class="form-control ">
+								<option value="不限">不限</option>
+								<option value="上午">上午</option>
+								<option value="中午">中午</option>
+								<option value="下午">下午</option>
+								<option value="晚上">晚上</option>
+								<option value="凌晨">凌晨</option>
 							</select>
 
 						</div>
@@ -354,21 +355,22 @@
 					<div class="form-group">
 						<label for="" class="col-sm-4 control-label">期望航司：</label>
 						<div class="col-sm-6">
-							<select name="select" class="form-control ">
-								<option value="">不限</option>
-								<option value="">中国航空</option>
-								<option value="">南方航空</option>
-								<option value="">四川航空</option>
+							<select name="airline" class="form-control ">
+								<option value="不限">不限</option>
+								<option value="中国航空">中国航空</option>
+								<option value="南方航空">南方航空</option>
+								<option value="四川航空">四川航空</option>
 							</select>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="" class="col-sm-4 control-label">期望仓位：</label>
 						<div class="col-sm-6">
-							<select name="select" class="form-control ">
-								<option value="">不限</option>
-								<option value="">经济舱</option>
-								<option value="">头等舱</option>
+							<select name="shippingSpace" class="form-control ">
+								<option value="不限">不限</option>
+								<option value="经济舱">经济舱</option>
+								<option value="公务舱">公务舱</option>
+								<option value="商务舱">商务舱</option>
 							</select>
 						</div>
 					</div>
@@ -379,6 +381,7 @@
 							<input type="text" class="form-control" id="" placeholder="限255字">
 						</div>
 					</div>
+					<input name="ticketId" type="hidden"/>
 				</form>
 			</div>
 			<div class="modal-footer">
@@ -431,6 +434,8 @@
 				});
 
 				$("#ticketinfo").on("click", ".qiye09", function() {
+					var ticketId = $(this).attr("name");
+					$("#gaiqian .form-horizontal input[name='ticketId']").val(ticketId);
 					layer.open({
 						type: 1,
 						shift: 2, //出场动画
@@ -489,7 +494,7 @@
 								'</td>';
 							if (e.orderStatus == "未支付") {
 								html += '<td><a href="#" class="quxiao" name="' + e.id + '">【取消订单】</a><br>' +
-									'<a href="javascript:;" onclick="pay(' + e.id + ',this)" >【立即支付】</a></td></tr>'
+									'<a href="javascript:;" onclick="pay(\'' + e.id + '\',this)" >【立即支付】</a></td></tr>'
 							} else if (e.orderStatus == "已支付") {
 								html += '<td><a href="orderdetails.html?ticketId=' + e.id + '">【查看详情】</a><br>' +
 									'<a href="#" class="qiye09" name="' + e.id + '">【申请改签】</a><br>' +
@@ -533,38 +538,60 @@
 
 			function refundTicket() {
 				var orderNumber = $("#rev .form-horizontal input[name='orderNumber']").val();
-				var price = $("#rev .form-horizontal input[name='price']").val();
 
 				$.ajax({
-					url: "../../api/alipayRefundRequest.action/out_trade_no/" + orderNumber + "/refund_amount/" + price,
+					url: "../../api/ticketRefund.action/out_trade_no/" + orderNumber,
 					type: "put",
 					data: {},
 					success: function(data) {
-						if (data == "退款成功") {
 							$("#ticketinfo tbody tr").each(function(i, e) {
 								if ($(e).find("td:first-child span").text() == orderNumber) {
-									$(e).children("td").eq(7).text("已退款");
+									$(e).children("td").eq(7).text("退款审核中");
 									var id = $(e).find("td:last-child a").eq(2).attr("name");
 									$(e).find("td:last-child").html('<a href="orderdetails.html?ticketId=' + id + '">【查看详情】</a>')
 								}
 							});
 							setTimeout(function() {
-								layer.msg('退票成功', {
+								layer.msg('申请成功', {
 									icon: 1
 								});
-							}, 100);
-						} else {
-							setTimeout(function() {
-								layer.msg('退票失败', {
-									icon: 1
-								});
-							}, 100);
-						}
+							}, 100); 
 					},
 					error: function(error) {
 						console.log(error);
 						setTimeout(function() {
-							layer.msg('退票失败', {
+							layer.msg('申请失败', {
+								icon: 1
+							});
+						}, 100);
+					}
+				});
+				layer.closeAll();
+			}
+			
+			function submittip(){
+				var id = $("#gaiqian .form-horizontal input[name='ticketId']").val();
+				$.ajax({
+					url: "../../api/ticketReboot.action",
+					type: "post",
+					data: $("#gaiqian form").serialize(),
+					success: function(data) {
+							$("#ticketinfo tbody tr .qiye09").each(function(i, e) {
+								if ($(e).attr("name") == id) {
+									$(e).parent().prev().text("改签审核中");
+									$(e).parent().html('<a href="orderdetails.html?ticketId=' + id + '">【查看详情】</a>')
+								}
+							});
+							setTimeout(function() {
+								layer.msg('申请成功', {
+									icon: 1
+								});
+							}, 100); 
+					},
+					error: function(error) {
+						console.log(error);
+						setTimeout(function() {
+							layer.msg('申请失败', {
 								icon: 1
 							});
 						}, 100);
@@ -587,7 +614,7 @@
 			
 			/* 用户信息 */
 			$.ajax({
-				url: "../../api/getUserName.form",
+				url: "../../api/getUserName.action",
 				type: "get",
 				success: function(data) {
 						$(".userinfo").html("");

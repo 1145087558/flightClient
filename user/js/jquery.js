@@ -11,9 +11,11 @@ if(screen.width < 780 && $(window).width() < 780)
 	 $(".content_list").show();
 	 });
 });
+
 //登录操作
 var phone =/[1][3-9][0-9]{9,9}/;
 var validCode=true;
+
 function cliLogin() {
 	var txtUser = $.trim($("#username").val());
 	var txtPwd = $("#password").val();
@@ -41,13 +43,13 @@ function cliLogin() {
 		type:"post",
 		data: {
 			"phone":txtUser,
-			"password":txtPwd
+			"password":encrypt(txtPwd)
 		}, 
 		success: function(data){
 			if(data=="成功"){
 				 window.location.href = "../index.html";
 			}else{
-				Tip('手机号或者密码错误');
+				Tip(data);
 			}
 		}
 	});

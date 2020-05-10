@@ -87,7 +87,7 @@ $(function() {
 					type:"post",
 					data: {
 						"userName":name,
-						"password":password,
+						"password":encrypt(password),
 						"phone":phone
 					}, 
 					success: function(){

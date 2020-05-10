@@ -163,15 +163,15 @@
 			$(function() {
 
 				$.ajax({
-					url: "../../api/getSessionUser",
+					url: "../../api/getSessionUser.action",
 					type: "get",
 					data: {},
 					success: function(data) {
-						$('.txiangName').text(data.name);
-						$("#fromId").val(data.id);
-						$("#status").val(data.status);
+						$('.txiangName').text(data[0]);
+						$("#fromId").val(data[1]);
+						$("#status").val(data[2]);
 						
-						if(data.status == 1){
+						if(data[2] == 1){
 							$(".touimg").attr("src","index_files/20170926103645_54.jpg");
 						}else{
 							$(".touimg").attr("src","index_files/20170926103645_04.jpg");

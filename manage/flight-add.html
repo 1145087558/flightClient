@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>后台登录-X-admin1.1</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="./css/font.css">
+		<link rel="stylesheet" href="./css/xadmin.css">
+		<link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+		<script src="./lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="./js/xadmin.js"></script>
+
+	</head>
+	<body>
+		<!-- 中部开始 -->
+		<div class="wrapper">
+			<!-- 右侧主体开始 -->
+			<div class="page-content">
+				<div class="content">
+					<!-- 右侧内容框架，更改从这里开始 -->
+					<form class="layui-form" action="../../api/manage/addFlight.form" method="post">
+						<div class="layui-form-item">
+							<label for="L_email" class="layui-form-label">
+								航班号
+							</label>
+							<div class="layui-input-inline">
+								<input type="text" id="flightNumber" name="flightNumber" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label for="L_tel" class="layui-form-label">
+								航空公司
+							</label>
+							<div class="layui-input-inline">
+								<input type="text" id="airline" name="airline" required lay-verify="required" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						<div class="layui-form-item">
+							<label for="L_city" class="layui-form-label">
+								机型
+							</label>
+							<div class="layui-input-inline">
+								<input type="text" id="modelType" name="modelType" autocomplete="off" class="layui-input">
+							</div>
+						</div>
+						
+						<div class="layui-form-item">
+							<label for="L_city" class="layui-form-label">
+								单返程
+							</label>
+							<div class="layui-inline">
+								<div class="layui-input-inline">
+									<input type="radio" name="rangeType" value="单程" id="range1" title="单程">
+									<input type="radio" name="rangeType" value="返程" id="range2" title="返程">
+								</div>
+							</div>
+						</div>
+						
+						<div class="layui-form-item">
+							<label for="L_sign" class="layui-form-label">
+							</label>
+							<!-- <button class="layui-btn" key="set-mine" lay-filter="save" lay-submit onclick="save()">
+								保存
+							</button> -->
+							<input type="submit"  class="layui-btn" />
+						</div>
+					</form>
+					<!-- 右侧内容框架，更改从这里结束 -->
+				</div>
+			</div>
+			<!-- 右侧主体结束 -->
+		</div>
+		<!-- 中部结束 -->
+		<script>
+			
+			$(".layui-form").submit(function() {
+				layer.msg("添加成功");
+				//parent.location.reload();
+				return true;
+			});
+		</script>
+	</body>
+</html>

@@ -104,7 +104,7 @@
 					<!-- 航班信息 -->
 					<div style="overflow: hidden;">
 						<h3 class="mar-bottom-20" style="display: block; float: left;">乘机人</h3>
-						<a href="" style="display: block; float: left; margin-left: 310px; line-height: 70px;">历史乘机人</a>
+						<!-- <a href="" style="display: block; float: left; margin-left: 310px; line-height: 70px;">历史乘机人</a> -->
 					</div>
 					<div class="order">
 						<div class="orderbody">
@@ -535,10 +535,13 @@
 				$.ajax({
 					url: "../../api/placeOrder.action",
 					type: "post",
-					dataType: "json",
 					data: $("#orderForm").serialize(),
 					success: function(data) {
-						window.location.href = "pay.html?orderId=" + data;
+						if(data == "预订失败"){
+							layer.msg(data);
+						}else{
+							window.location.href = "pay.html?orderId=" + data;
+						}
 					},
 					error: function(error) {
 						console.log(error);
@@ -560,7 +563,7 @@
 
 			/* 用户信息 */
 			$.ajax({
-				url: "../../api/getUserName.form",
+				url: "../../api/getUserName.action",
 				type: "get",
 				success: function(data) {
 						$(".userinfo").html("");

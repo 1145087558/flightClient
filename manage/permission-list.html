@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>后台管理-X-admin1.1</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+		<link rel="stylesheet" href="./css/font.css">
+		<link rel="stylesheet" href="./css/xadmin.css">
+		<link rel="stylesheet" href="https://cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css">
+		<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript" src="https://cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+		<script src="./lib/layui/layui.js" charset="utf-8"></script>
+		<script type="text/javascript" src="./js/xadmin.js"></script>
+
+	</head>
+	<body>
+		<!-- 顶部开始 -->
+		<div class="container">
+			<div class="logo"><a href="./index.html">X-ADMIN V1.1</a></div>
+			<div class="open-nav"><i class="iconfont">&#xe699;</i></div>
+			<ul class="layui-nav right" lay-filter="">
+				<li class="layui-nav-item">
+					<a href="javascript:;"><label id="username"></label></a>
+					<dl class="layui-nav-child">
+						<!-- 二级菜单 -->
+						<dd><a href="javascript:;">个人信息</a></dd>
+						<dd><a href="javascript:;" onclick="logout()">切换帐号</a></dd>
+						<dd><a href="javascript:;" onclick="logout()">退出</a></dd>
+					</dl>
+				</li>
+				<li class="layui-nav-item"><a href="../index.html">前台首页</a></li>
+			</ul>
+		</div>
+		<!-- 顶部结束 -->
+		<!-- 中部开始 -->
+		<div class="wrapper">
+			<!-- 左侧菜单开始 -->
+			<div class="left-nav">
+				<div id="side-nav">
+					<ul id="nav">
+						<li class="list" current>
+							<a href="./index.html">
+								<i class="iconfont">&#xe761;</i>
+								欢迎页面
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe70b;</i>
+								会员管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu" style="display:none">
+								<li>
+									<a href="member-list.html">
+										<i class="iconfont">&#xe6a7;</i>
+										会员列表
+									</a>
+								</li>
+								<li >
+									<a href="member-del.html">
+										<i class="iconfont">&#xe6a7;</i>
+										会员删除
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i>
+								订单管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu" style="display:none">
+								<li>
+									<a href="./order-list.html">
+										<i class="iconfont">&#xe6a7;</i>
+										订单列表
+									</a>
+								</li>
+								<li>
+									<a href="./orderrefund-list.html">
+										<i class="iconfont">&#xe6a7;</i>
+										退票审核
+									</a>
+								</li>
+								<li>
+									<a href="./orderrebook-list.html">
+										<i class="iconfont">&#xe6a7;</i>
+										改签审核
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i>
+								航班管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu" style="display:none">
+								<li>
+									<a href="./flight-list.html">
+										<i class="iconfont">&#xe6a7;</i>
+										航班信息
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i>
+								管理员管理
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu opened">
+								<li>
+									<a href="./admin-list.html">
+										<i class="iconfont">&#xe6a7;</i>
+										管理员列表
+									</a>
+								</li>
+								<li class="current">
+									<a href="./role-list.html">
+										<i class="iconfont">&#xe6a7;</i>
+										角色管理
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i>
+								系统统计
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu" style="display:none">
+								<li>
+									<a href="./echarts1.html">
+										<i class="iconfont">&#xe6a7;</i>
+										售票统计
+									</a>
+								</li>
+								<li>
+									<a href="./echarts2.html">
+										<i class="iconfont">&#xe6a7;</i>
+										盈利统计
+									</a>
+								</li>
+							</ul>
+						</li>
+						<li class="list">
+							<a href="javascript:;">
+								<i class="iconfont">&#xe6a3;</i>
+								系统监控
+								<i class="iconfont nav_right">&#xe697;</i>
+							</a>
+							<ul class="sub-menu" style="display:none">
+								<li>
+									<a href="./server-list.html">
+										<i class="iconfont">&#xe6a7;</i>
+										服务监控
+									</a>
+									<a href="../../api/druid">
+										<i class="iconfont">&#xe6a7;</i>
+										数据库监控
+									</a>
+									<a href="http://localhost:5601">
+										<i class="iconfont">&#xe6a7;</i>
+										日志系统
+									</a>
+									<a href="../../api/swagger-ui.html">
+										<i class="iconfont">&#xe6a7;</i>
+										API文档
+									</a>
+								</li>
+							</ul>
+						</li>
+					</ul>
+				</div>
+			</div>
+			<!-- 左侧菜单结束 -->
+			<!-- 右侧主体开始 -->
+			<div class="page-content">
+				<div class="content">
+					<!-- 右侧内容框架，更改从这里开始 -->
+					<form class="layui-form xbs" action="">
+						<div class="layui-form-pane" style="text-align: center;">
+							<div class="layui-form-item" style="display: inline-block;">
+								<label class="layui-form-label xbs768">日期范围</label>
+								<div class="layui-input-inline xbs768">
+									<input class="layui-input" placeholder="开始日" id="LAY_demorange_s">
+								</div>
+								<div class="layui-input-inline xbs768">
+									<input class="layui-input" placeholder="截止日" id="LAY_demorange_e">
+								</div>
+								<div class="layui-input-inline">
+									<input type="text" name="username" placeholder="请输入用户名" autocomplete="off" class="layui-input">
+								</div>
+								<div class="layui-input-inline" style="width:80px">
+									<button class="layui-btn" lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+								</div>
+							</div>
+						</div>
+					</form>
+					<xblock><button class="layui-btn layui-btn-danger" onclick="return delAll()"><i class="layui-icon">&#xe640;</i>批量删除</button><button
+						 class="layui-btn" onclick="return member_add('添加用户','member-add.html','600','500')"><i class="layui-icon">&#xe608;</i>添加</button><span
+						 class="x-right" style="line-height:40px">当前数据量:<label id="count"></label></span></xblock>
+					<table class="layui-table">
+						<thead>
+							<tr>
+								<th>
+									<input type="checkbox" id="check" onclick="checkAll()">
+								</th>
+								<th>
+									ID
+								</th>
+								<th>
+									描述
+								</th>
+								<th>
+									关键字
+								</th>
+								<th>
+									名称
+								</th>
+								<th>
+									操作
+								</th>
+							</tr>
+						</thead>
+						<tbody>
+						</tbody>
+					</table>
+					<!-- 右侧内容框架，更改从这里结束 -->
+				</div>
+			</div>
+			<!-- 右侧主体结束 -->
+		</div>
+		<!-- 中部结束 -->
+		<!-- 底部开始 -->
+		<div class="footer">
+			<div class="copyright">Copyright ©2017 x-admin v2.3 All Rights Reserved. 本后台系统由X前端框架提供前端技术支持</div>
+		</div>
+		<!-- 底部结束 -->
+		<!-- 背景切换开始 -->
+		<div class="bg-changer">
+			<div class="swiper-container changer-list">
+				<div class="swiper-wrapper">
+					<div class="swiper-slide"><img class="item" src="./images/a.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="./images/b.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="./images/c.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="./images/d.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="./images/e.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="./images/f.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="./images/g.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="./images/h.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="./images/i.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="./images/j.jpg" alt=""></div>
+					<div class="swiper-slide"><img class="item" src="./images/k.jpg" alt=""></div>
+					<div class="swiper-slide"><span class="reset">初始化</span></div>
+				</div>
+			</div>
+			<div class="bg-out"></div>
+			<div id="changer-set"><i class="iconfont">&#xe696;</i></div>
+		</div>
+		<!-- 背景切换结束 -->
+		<!-- 页面动态效果 -->
+		<script>
+			function checkAll() {
+				if ($("#check").prop("checked")) {
+					$("input[name='checkbox']").prop("checked", true);
+
+
+				} else {
+					$("input[name='checkbox']").prop("checked", false);
+
+				}
+			}
+
+			function logout() {
+				$.ajax({
+					url: "../../api/manage/logout.form",
+					type: "get",
+					data: {},
+					success: function(data) {
+						window.location.href = "login.html";
+					}
+				});
+			}
+			
+			function getQueryVariable(variable) {
+				let query = window.location.search.substring(1);
+				let vars = query.split("&");
+				for (let i = 0; i < vars.length; i++) {
+					let pair = vars[i].split("=");
+					if (pair[0] == variable) {
+						return pair[1];
+					}
+				}
+				return (false);
+			}
+			
+			$(function() {
+				$.ajax({
+					url: "../../api/manage/getUserName.form",
+					type: "get",
+					success: function(data) {
+						$("#username").html(data);
+					},
+					error: function(error) {
+						console.log(error);
+						if (error.status == 403) {
+							window.location.href = "login.html";
+						}
+					}
+				});
+
+				$.ajax({
+					type: 'get',
+					url: '../../api/manage/getPermissionList.form/roleId/'+getQueryVariable("roleId"),
+					dataType: 'json',
+					success: function(data) {
+						var html = "";
+						var count = 0;
+
+						$.each(data, function(i, e) {
+							count += 1;
+							html += '<tr><td><input type="checkbox" value="1" name="checkbox"></td><td>' + e.id + '</td>' +
+								'<td >' + e.description + '</td><td >' + e.keyword + '</td><td >' + e.name + '</td>'+
+								'<td><a style="text-decoration:none" href="permission-list.html" title="查看权限">' +
+								'<i class="layui-icon">&#xe631;</i></a>' +
+								'<a title="删除" href="javascript:;" onclick="member_del(this,' + e.id +
+								')" style="text-decoration:none"><i class="layui-icon">&#xe640;</i></a></td></tr>'
+						});
+						$("#count").html(count);
+						$(".layui-table tbody").html(html);
+					},
+					error: function() {
+
+					}
+				});
+			});
+
+			layui.use(['laydate'], function() {
+				laydate = layui.laydate; //日期插件
+
+				//以上模块根据需要引入
+				//
+
+
+
+				var start = {
+					min: laydate.now(),
+					max: '2099-06-16 23:59:59',
+					istoday: false,
+					choose: function(datas) {
+						end.min = datas; //开始日选好后，重置结束日的最小日期
+						end.start = datas //将结束日的初始值设定为开始日
+					}
+				};
+
+				var end = {
+					min: laydate.now(),
+					max: '2099-06-16 23:59:59',
+					istoday: false,
+					choose: function(datas) {
+						start.max = datas; //结束日选好后，重置开始日的最大日期
+					}
+				};
+
+				document.getElementById('LAY_demorange_s').onclick = function() {
+					start.elem = this;
+					laydate(start);
+				}
+				document.getElementById('LAY_demorange_e').onclick = function() {
+					end.elem = this
+					laydate(end);
+				}
+
+			});
+
+			//批量删除提交
+			function delAll() {
+				$.ajax({
+					async: true,
+					type: "POST",
+					url: "../../api/manage/getusergrade.form",
+					success: function(data) {
+						if (data == 1) {
+							layer.confirm('确认要删除吗？', function(index) {
+								//捉到所有被选中的，发异步进行删除
+								layer.msg('删除成功', {
+									icon: 1
+								});
+							});
+						} else {
+							return false;
+						}
+					}
+				});
+			}
+			/*用户-添加*/
+			function member_add(title, url, w, h) {
+				
+				x_admin_show(title, url, w, h);
+			}
+			/*用户-查看*/
+			function member_show(title, url, id, w, h) {
+				x_admin_show(title, url, w, h);
+			}
+
+			/*用户-停用*/
+			function member_stop(obj, id) {
+				
+				layer.confirm('确认要停用吗？', function(index) {
+					//发异步把用户状态进行更改
+					$.ajax({
+						type: "put",
+						url: "../../api/manage/modifyStatus.form/userId/"+id+"/"+3,
+						success: function(data) {
+							
+						}
+					});
+					$(obj).parents("tr").find(".td-manage").prepend(
+						'<a style="text-decoration:none" onClick="member_start(this,'+id+')" href="javascript:;" title="启用"><i class="layui-icon">&#xe62f;</i></a>'
+					);
+					$(obj).parents("tr").find(".td-status").html(
+						'<span class="layui-btn layui-btn-disabled layui-btn-mini">已停用</span>');
+					$(obj).remove();
+					layer.msg('已停用!', {
+						icon: 5,
+						time: 1000
+					});
+				});
+			}
+
+			/*用户-启用*/
+			function member_start(obj, id) {
+				
+				
+				layer.confirm('确认要启用吗？', function(index) {
+					//发异步把用户状态进行更改
+					$.ajax({
+						type: "put",
+						url: "../../api/manage/modifyStatus.form/userId/"+id+"/"+0,
+						success: function(data) {
+						}
+					});
+					$(obj).parents("tr").find(".td-manage").prepend(
+						'<a style="text-decoration:none" onClick="member_stop(this,'+id+')" href="javascript:;" title="停用"><i class="layui-icon">&#xe601;</i></a>'
+					);
+					$(obj).parents("tr").find(".td-status").html(
+						'<span class="layui-btn layui-btn-normal layui-btn-mini">已启用</span>');
+					$(obj).remove();
+					layer.msg('已启用!', {
+						icon: 6,
+						time: 1000
+					});
+				});
+
+			}
+			// 用户-编辑
+			function member_edit(title, url, peo, w, h) {
+				
+				x_admin_show(title, url, w, h);
+			}
+			/*密码-重置*/
+			function member_password(obj) {
+              var id = $(obj).parent().parent().find("td").eq(1).text();
+              layer.confirm('确认要重置吗？', function(index) {
+              	$.ajax({
+              		url: "../../api/manage/memberPwd.form/userId/"+id,
+              		type: "put",
+              		success: function(data) {
+              		}
+              	});
+              	layer.msg('已重置!', {
+              		icon: 1,
+              		time: 1000
+              	});
+              });
+
+			}
+			/*用户-删除*/
+			function member_del(obj, id) {
+				var id = $(obj).parent().parent().find("td").eq(1).text();
+				layer.confirm('确认要删除吗？', function(index) {
+					$.ajax({
+						url: "../../api/manage/modifyStatus.form/userId/"+id+"/"+4,
+						type: "put",
+						success: function(data) {
+						}
+					});
+					//发异步删除数据
+					$(obj).parents("tr").remove();
+					layer.msg('已删除!', {
+						icon: 1,
+						time: 1000
+					});
+				});
+
+			}
+		</script>
+
+	</body>
+</html>

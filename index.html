@@ -117,11 +117,11 @@
 					</div>
 					<div class="form-group mar-left-10">
 						<label for="">出发日期</label> <input type="text" class="form-control " style="width: 110px;" id="startTime" name="startTime"
-						 value="2019-10-19" placeholder="" onClick="WdatePicker()">
+						 value="2020-01-01" placeholder="" onClick="WdatePicker()">
 					</div>
 					<div class="form-group mar-left-10">
 						<label for="">返回日期</label> <input type="text" class="form-control " id="endTime" style="width: 110px;" onClick="WdatePicker()"
-						 name="endTime" value="2019-10-19" placeholder="">
+						 name="endTime" value="" placeholder="输入到达日期">
 					</div>
 					<div class="form-group mar-left-10">
 						<select id="dropAirlines" class="form-control" name="airline" style="width: 120px;">
@@ -415,9 +415,18 @@
 			});
 
 			function weekLeft() {
-				var name = $("#week li:first-child a").attr("name");
+				var obj = $("#week .active").prev();
+				var name = obj.find("a").attr("name");
+				obj.siblings().removeClass("active");
+				obj.addClass('active');
+				if (name == undefined) {
+					name = $("#week li:first-child a").attr("name") + 'left';
+				}
+				//var name = $("#week li:first-child a").attr("name");
+				var departure = $(".form-group input[name='departure']").val();
+				var destination = $(".form-group input[name='destination']").val();
 				$.ajax({
-					url: "../api/searchByWeek.action/" + name,
+					url: "../api/weekMove.action/" + name + "/" + departure + "/" + destination,
 					type: "get",
 					dataType: "json",
 					data: {},
@@ -427,15 +436,61 @@
 							$("#week").append('<li role="presentation" class=""><a href="javascript:;"name="' + data.dateWeek[i] + '">' +
 								data.dateWeek[i] + '<br>' + data.weeks[i] + '</a></li>');
 						}
-						//$("#week li:first-child").addClass("active");
+						$("#week li:first-child").addClass("active");
+
+						$(".hangbanlist").html("");
+						$.each(data.flightData, function(i, e) {
+							$(".hangbanlist").append(
+								'<div><ul class="list-inline bor-bottom-solid-1  "><li class="w-percentage-25"><img src="img/air/3U.png"' +
+								'width="24" height="24"> <strong>' + e.flightInfo.airline + '</strong>' + e.flightInfo.flightNumber +
+								'<span class="gray-999 font12 mar-left-10">机型：' + e.flightInfo.modelType + '</span></li>' +
+								'<li class="text-right w200"><strong class="time "> ' + dateFormat("HH:MM", e.startTime) +
+								' </strong></li><li class="">——</li><li class="w80"><strong class="time ">' + dateFormat("HH:MM", e.endTime) +
+								'</strong></li><li class="w200 text-right departure" style="font-size: 20px;">' + e.departure + '</li>' +
+								'<li class="">——</li><li class="w110 destination" style="font-size: 20px;">' + e.destination +
+								'</li></ul>');
+
+							$.each(e.flightInfo.cabins, function(j, f) {
+								$(".hangbanlist").append('<div class="collapse" id="collapseExample" style="display: block;">' +
+									'<div class="hangbanlist-body " style="background-color: #FEFCFC;">' +
+									'<ul class="list-inline"><li class="w-percentage-20">' +
+									'<strong class="shippingSpace">' + f.shippingSpace + '</strong>' +
+									'<li class="w-percentage-25">座位数：' + f.seatNumber + '</li>' +
+									'<li class="w-percentage-25">票面价：<span class="rmb">' + f.adultPrice + '</span></li>' +
+									'<li class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥' + f.adultPrice +
+									'</strong>' +
+									' <span class="gray font12">1.9折</span></li><li class="pull-right "><button type="button"' +
+									'class="btn btn-danger btn-sm" onclick="subscribe(' + f.seatNumber + ',\'' + e.id + '\',\'' + f.id +
+									'\')">订票</button></li></ul>');
+							});
+						});
+						$(".shippingSpace").each(function(i, e) {
+							var object = $(e);
+							if (object.text() == '经济舱') {
+								object.addClass("blue-0093dd");
+							} else {
+								object.addClass("red");
+							}
+						});
 					}
 				});
+
 			}
 
 			function weekRight() {
-				var name = $("#week li:last-child a").attr("name");
+				var obj = $("#week .active").next();
+				var name = obj.find("a").attr("name");
+				obj.siblings().removeClass("active");
+				obj.addClass('active');
+				if (name == undefined) {
+					name = $("#week li:last-child a").attr("name") + 'right';
+				}
+				//var name = $("#week li:last-child a").attr("name");
+				var departure = $(".form-group input[name='departure']").val();
+				var destination = $(".form-group input[name='destination']").val();
+
 				$.ajax({
-					url: "../api/searchByWeek.action/" + name,
+					url: "../api/weekMove.action/" + name + "/" + departure + "/" + destination,
 					type: "get",
 					dataType: "json",
 					data: {},
@@ -445,7 +500,41 @@
 							$("#week").append('<li role="presentation" class=""><a href="javascript:;"name="' + data.dateWeek[i] + '">' +
 								data.dateWeek[i] + '<br>' + data.weeks[i] + '</a></li>');
 						}
-						//$("#week li:first-child").addClass("active");
+						$("#week li:first-child").addClass("active");
+
+						$(".hangbanlist").html("");
+						$.each(data.flightData, function(i, e) {
+							$(".hangbanlist").append(
+								'<div><ul class="list-inline bor-bottom-solid-1  "><li class="w-percentage-25"><img src="img/air/3U.png"' +
+								'width="24" height="24"> <strong>' + e.flightInfo.airline + '</strong>' + e.flightInfo.flightNumber +
+								'<span class="gray-999 font12 mar-left-10">机型：' + e.flightInfo.modelType + '</span></li>' +
+								'<li class="text-right w200"><strong class="time "> ' + dateFormat("HH:MM", e.startTime) +
+								' </strong></li><li class="">——</li><li class="w80"><strong class="time ">' + dateFormat("HH:MM", e.endTime) +
+								'</strong></li><li class="w200 text-right departure" style="font-size: 20px;">' + e.departure + '</li>' +
+								'<li class="">——</li><li class="w110 destination" style="font-size: 20px;">' + e.destination +
+								'</li></ul>');
+							$.each(e.flightInfo.cabins, function(j, f) {
+								$(".hangbanlist").append('<div class="collapse" id="collapseExample" style="display: block;">' +
+									'<div class="hangbanlist-body " style="background-color: #FEFCFC;">' +
+									'<ul class="list-inline"><li class="w-percentage-20">' +
+									'<strong class="shippingSpace">' + f.shippingSpace + '</strong>' +
+									'<li class="w-percentage-25">座位数：' + f.seatNumber + '</li>' +
+									'<li class="w-percentage-25">票面价：<span class="rmb">' + f.adultPrice + '</span></li>' +
+									'<li class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥' + f.adultPrice +
+									'</strong>' +
+									' <span class="gray font12">1.9折</span></li><li class="pull-right "><button type="button"' +
+									'class="btn btn-danger btn-sm" onclick="subscribe(' + f.seatNumber + ',\'' + e.id + '\',\'' + f.id +
+									'\')">订票</button></li></ul>');
+							});
+						});
+						$(".shippingSpace").each(function(i, e) {
+							var object = $(e);
+							if (object.text() == '经济舱') {
+								object.addClass("blue-0093dd");
+							} else {
+								object.addClass("red");
+							}
+						});
 					}
 				});
 			}
@@ -464,16 +553,23 @@
 			}
 
 			function subscribe(number, flightId, cabinId) {
-				if (getCookie() != "") {
-					if (number > 0) {
-						window.location.href = 'subscribe/subscribe.html?flightId=' + flightId + '&cabinId=' + cabinId;
-					} else {
-						alert("无票");
+				$.ajax({
+					url: "../api/subscribe.action/"+flightId+"/"+cabinId,
+					type: "get",
+					success: function(data) {
+						if (data == "success") {
+							window.location.href = 'subscribe/subscribe.html?flightId=' + flightId + '&cabinId=' + cabinId;
+						} else {
+							layer.msg(data);
+						}
+					},
+					error: function(error) {
+						console.log(error);
+						if(error.status==403){
+							window.location.href="user/login.html";
+						}
 					}
-				} else {
-					window.location.href = "user/login.html";
-				}
-
+				});
 			}
 		</script>
 
@@ -492,18 +588,18 @@
 			$(function() {
 				/* 获取用户名*/
 				$.ajax({
-					url: "../api/getUserName.form",
+					url: "../api/getUserName.action",
 					type: "get",
 					success: function(data) {
-							$(".userinfo").html("");
-							$(".userinfo").append(
-								'<li class="dropdown"><a href="javascript:;" class="dropdown-toggle"' +
-								'data-toggle="dropdown" role="button" aria-haspopup="true" ' +
-								'aria-expanded="false">您好，' + data + '<span class="caret"></span></a>' +
-								'<ul class="dropdown-menu">' +
-								'<li><a href="系统管理/修改密码.html">修改密码</a></li>\n' +
-								'<li><a href="javascript:;" onclick="logout()">退出</a></li>' +
-								'</ul></li>');
+						$(".userinfo").html("");
+						$(".userinfo").append(
+							'<li class="dropdown"><a href="javascript:;" class="dropdown-toggle"' +
+							'data-toggle="dropdown" role="button" aria-haspopup="true" ' +
+							'aria-expanded="false">您好，' + data + '<span class="caret"></span></a>' +
+							'<ul class="dropdown-menu">' +
+							'<li><a href="系统管理/修改密码.html">修改密码</a></li>\n' +
+							'<li><a href="javascript:;" onclick="logout()">退出</a></li>' +
+							'</ul></li>');
 					}
 				});
 				/* if (getCookie() != "") {
@@ -533,8 +629,9 @@
 								'<span class="gray-999 font12 mar-left-10">机型：' + e.flightInfo.modelType + '</span></li>' +
 								'<li class="text-right w200"><strong class="time "> ' + dateFormat("HH:MM", e.startTime) +
 								' </strong></li><li class="">——</li><li class="w80"><strong class="time ">' + dateFormat("HH:MM", e.endTime) +
-								'</strong></li><li class="w200 text-right" style="font-size: 20px;">' + e.departure + '</li>' +
-								'<li class="">——</li><li class="w110" style="font-size: 20px;">' + e.destination + '</li></ul>');
+								'</strong></li><li class="w200 text-right departure" style="font-size: 20px;">' + e.departure + '</li>' +
+								'<li class="">——</li><li class="w110 destination" style="font-size: 20px;">' + e.destination +
+								'</li></ul>');
 
 							$.each(e.flightInfo.cabins, function(j, f) {
 								$(".hangbanlist").append('<div class="collapse" id="collapseExample" style="display: block;">' +
@@ -546,8 +643,8 @@
 									'<li class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥' + f.adultPrice +
 									'</strong>' +
 									' <span class="gray font12">1.9折</span></li><li class="pull-right "><button type="button"' +
-									'class="btn btn-danger btn-sm" onclick="subscribe(' + f.seatNumber + ',' + e.id + ',' + f.id +
-									')">订票</button></li></ul>');
+									'class="btn btn-danger btn-sm" onclick="subscribe(' + f.seatNumber + ',\'' + e.id + '\',\'' + f.id +
+									'\')">订票</button></li></ul>');
 							});
 						});
 						$(".shippingSpace").each(function(i, e) {
@@ -633,8 +730,8 @@
 									'<li class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥' + f.adultPrice +
 									'</strong>' +
 									' <span class="gray font12">1.9折</span></li><li class="pull-right "><button type="button"' +
-									'class="btn btn-danger btn-sm" onclick="subscribe(' + f.seatNumber + ',' + e.id + ',' + f.id +
-									')">订票</button></li></ul>');
+									'class="btn btn-danger btn-sm" onclick="subscribe(' + f.seatNumber + ',\'' + e.id + '\',\'' + f.id +
+									'\')">订票</button></li></ul>');
 							});
 						});
 
@@ -664,6 +761,13 @@
 					data: $("#serachForm").serialize(),
 					success: function(data) {
 
+						$("#week").html("");
+						for (var i = 0; i < data.weeks.length; i++) {
+							$("#week").append('<li role="presentation" class=""><a href="javascript:;"name="' + data.dateWeek[i] + '">' +
+								data.dateWeek[i] + '<br>' + data.weeks[i] + '</a></li>');
+						}
+						$("#week li:first-child").addClass("active");
+
 						$(".hangbanlist").html("");
 						$.each(data.flightData, function(i, e) {
 							$(".hangbanlist").append(
@@ -685,8 +789,8 @@
 									'<li class="w-percentage-20 ">优惠价：<strong class="rmb orange-f60 font16">￥' + f.adultPrice +
 									'</strong>' +
 									' <span class="gray font12">1.9折</span></li><li class="pull-right "><button type="button"' +
-									'class="btn btn-danger btn-sm" onclick="subscribe(' + f.seatNumber + ',' + e.id + ',' + f.id +
-									')">订票</button></li></ul>');
+									'class="btn btn-danger btn-sm" onclick="subscribe(' + f.seatNumber + ',\'' + e.id + '\',\'' + f.id +
+									'\')">订票</button></li></ul>');
 							});
 						});
 
